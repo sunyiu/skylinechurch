@@ -1,7 +1,7 @@
 # Skyline Church
 
 A google account driven web application for skyline church
-
+Both API keys and OAuth 2.0 client ID are needed for the project.
 
 ## Getting Started
 

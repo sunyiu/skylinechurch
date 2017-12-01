@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('skyline:server');
 var http = require('http');
 
+var skylineGoogle = require('../skyline/google');
+var key = require('../keys/key');
+
 /**
  * Get port from environment and store in Express.
  */
@@ -87,4 +90,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+
+  skylineGoogle.authorize(key.google);
 }
