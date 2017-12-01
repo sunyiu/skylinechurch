@@ -91,5 +91,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 
-  skylineGoogle.authorize(key.google);
+  skylineGoogle.authorize();
 }
