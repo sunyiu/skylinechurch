@@ -8,9 +8,11 @@ A google account driven web application for skyline church
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
+https://console.developers.google.com
+
 https://console.cloud.google.com
 A Google Cloud Platform account is needed
-A service account has to be setup and the key has to be exported to key folder
+A service account has to be setup and the key has to be exported under key folder
 
 
 ```

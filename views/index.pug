@@ -1,5 +1,15 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')    
+    
+  body
+      h1= title
+      p Welcome to #{title}
 
-block content
-  h1= title
-  p Welcome to #{title}
+
+      script(src='/vendors/jquery/jquery-3.2.1.min.js')
+      script(src='/javascripts/index.js')          
+
+      //- script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")
