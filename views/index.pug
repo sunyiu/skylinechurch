@@ -2,14 +2,30 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/loader.css')    
     link(rel='stylesheet', href='/stylesheets/style.css')    
     
   body
-      h1= title
-      p Welcome to #{title}
+      h1 Welcome to #{title}
+
+      div#loaderContainer
+        div.label Getting events of the week....
+        div.loader 
 
 
+      div#eventContainer
+        h2#header
+        div#events
+        div#findOutMore Find out more
+
+
+      //- vendor
       script(src='/vendors/jquery/jquery-3.2.1.min.js')
+      script(src='/vendors/moment/moment.min.js')
+      script(src='/vendors/lodash/lodash.core.min.js')
+      
+      
+      script(src='/javascripts/skyline_client.js')
       script(src='/javascripts/index.js')          
 
       //- script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")

@@ -1,8 +1,71 @@
+/* Coolors Exported Palette - coolors.co/ffffe8-e56554-a8fff3-ffa654-078fff */
+/* HSL */
+/* RGB */
+/* cream white */
+/* reddish orange */
+/* pastel green */
+/* orange */
+/* blue */
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
+
+#loaderContainer {
+  text-align: center; }
+
+.calendar, .event.mute .calendar {
+  display: inline-block;
+  background-color: white;
+  text-align: center; }
+  .calendar .day, .event.mute .calendar .day {
+    font-size: 1.5em;
+    padding: 5px 10px 5px 10px;
+    background-color: #078fff;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid black;
+    font-weight: bold; }
+    .calendar .day .holiday {
+      background-color: #e56554; }
+  .calendar .month, .event.mute .calendar .month {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-transform: uppercase;
+    padding-top: 5px; }
+  .calendar .date, .event.mute .calendar .date {
+    padding: 5px 10px 5px 10px;
+    font-size: 2.5em;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid black;
+    border-top: none; }
+
+.event {
+  display: flex;
+  align-items: center;
+  padding-bottom: 25px;
+  -webkit-transition: opacity 600ms, visibility 600ms;
+  transition: opacity 600ms, visibility 600ms; }
+  .event .detailContainer {
+    padding-left: 25px; }
+
+.event.mute {
+  color: #888; }
+  .event.mute .calendar .day {
+    color: #333;
+    background-color: #aaa; }
+    .event.mute .calendar .day .holiday {
+      background-color: #aaa; }
+  .event.mute .calendar .date, .event.mute .calendar .month {
+    background-color: #ccc; }
+
+#findOutMore {
+  display: inline-block;
+  padding: 15px;
+  background-color: #ffa654;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=style.css.map */

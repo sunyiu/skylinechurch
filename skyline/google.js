@@ -1,5 +1,5 @@
 var google = require('googleapis'),
-    key = require('../keys/key'),
+    key = require('../keys/google'),
     _ = require('lodash'),
     jwtClient = null;
 
@@ -14,10 +14,10 @@ var googleCac = {
 
         // configure a JWT auth client
         jwtClient = new google.auth.JWT(
-            key.google.privateKey.client_email,
+            key.privateKey.client_email,
             null,
-            key.google.privateKey.private_key,
-            key.google.scopes);
+            key.privateKey.private_key,
+            key.scopes);
 
         //authenticate request
         jwtClient.authorize(function (err, tokens) {
@@ -32,11 +32,14 @@ var googleCac = {
 
     getCalendarEvents: function (from, to) {
         //Google Calendar API
+        //https://developers.google.com/google-apps/calendar/v3/reference/events/list
+        //By default 250 events are returned per request - maxResults
+
         let calendar = google.calendar('v3');
         return new Promise((resolve, reject) => {
             let params = {
                 auth: jwtClient,
-                calendarId: key.google.eventCalendarId,
+                calendarId: key.eventCalendarId,
                 singleEvents: true,     //flatten the recursive events
                 orderBy: 'startTime'
             };
@@ -52,7 +55,7 @@ var googleCac = {
                     reject(err);
                     return;
                 }
-                resolve(response.items);
+                resolve(response);
                 //var events = response.items;      
                 // if (events.length == 0) {
                 //   console.log('No events found.');
