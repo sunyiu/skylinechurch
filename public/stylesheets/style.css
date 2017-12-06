@@ -8,40 +8,63 @@
 /* blue */
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 12px 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  background-color: #ffffe8; }
 
 a {
   color: #00B7FF; }
 
+pre {
+  margin: 0; }
+
 #loaderContainer {
   text-align: center; }
 
-.calendar, .event.mute .calendar {
+.calendar {
+  font-family: 'Patua One', cursive;
   display: inline-block;
-  background-color: white;
+  background-color: inherit;
   text-align: center; }
-  .calendar .day, .event.mute .calendar .day {
+  .calendar .day {
     font-size: 1.5em;
-    padding: 5px 10px 5px 10px;
+    padding: 2px 10px 2px 10px;
     background-color: #078fff;
     color: white;
     text-transform: uppercase;
     border-radius: 5px 5px 0 0;
     border: 1px solid black;
     font-weight: bold; }
-    .calendar .day .holiday {
-      background-color: #e56554; }
-  .calendar .month, .event.mute .calendar .month {
+  .calendar .month {
     border-left: 1px solid black;
     border-right: 1px solid black;
     text-transform: uppercase;
-    padding-top: 5px; }
-  .calendar .date, .event.mute .calendar .date {
-    padding: 5px 10px 5px 10px;
+    padding-top: 5px;
+    background-color: white; }
+  .calendar .date {
+    background-color: white;
+    padding: 0px 10px 2px 10px;
+    margin-top: -5px;
     font-size: 2.5em;
     border-radius: 0 0 5px 5px;
     border: 1px solid black;
     border-top: none; }
+
+.calendar.sunday .day {
+  background-color: #e56554; }
+
+.calendar.mute .day {
+  color: #333;
+  background-color: #aaa; }
+  .calendar.mute .day .holiday {
+    background-color: #aaa; }
+
+.calendar.mute .date, .calendar.mute .month {
+  background-color: #ccc;
+  color: #555; }
+
+.rangeCalendar {
+  display: flex;
+  align-items: center; }
 
 .event {
   display: flex;
@@ -65,18 +88,14 @@ a {
 
 .event.mute {
   color: #888; }
-  .event.mute .calendar .day {
-    color: #333;
-    background-color: #aaa; }
-    .event.mute .calendar .day .holiday {
-      background-color: #aaa; }
-  .event.mute .calendar .date, .event.mute .calendar .month {
-    background-color: #ccc; }
 
 #findOutMore {
   display: inline-block;
   padding: 15px;
   background-color: #ffa654;
-  border-radius: 5px; }
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.25em; }
 
 /*# sourceMappingURL=style.css.map */

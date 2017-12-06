@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Patua+One|Roboto+Condensed')
     link(rel='stylesheet', href='/stylesheets/loader.css')    
     link(rel='stylesheet', href='/stylesheets/style.css')    
     
@@ -10,11 +11,11 @@ html
       h1 Welcome to #{title}
 
       div#loaderContainer
-        div.label Getting events of the week....
+        div.label Getting events for this week....
         div.loader 
 
 
-      div#eventContainer
+      div(id='eventContainer' style='display: none')
         h2#header
         div#events
         div#findOutMore Find out more
