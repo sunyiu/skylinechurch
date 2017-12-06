@@ -166,8 +166,8 @@ $(function () {
             let to = moment(events$.data('to')).add(4, 'w'),
                 from = moment(events$.data('to')).add(1, 'd').startOf('date');
 
-            console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
-            events$.data('from', from);
+            //console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
+            //events$.data('from', from);
             events$.data('to', to);
 
             skyline.getEvents(from, to).then((events) => {
