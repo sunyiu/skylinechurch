@@ -51,6 +51,17 @@ a {
   transition: opacity 600ms, visibility 600ms; }
   .event .detailContainer {
     padding-left: 25px; }
+    .event .detailContainer .name {
+      font-size: 1.25em; }
+    .event .detailContainer > div {
+      display: table;
+      align-content: center;
+      padding-bottom: 5px; }
+      .event .detailContainer > div i, .event .detailContainer > div span {
+        display: table-cell;
+        vertical-align: middle; }
+      .event .detailContainer > div span {
+        padding-left: 5px; }
 
 .event.mute {
   color: #888; }

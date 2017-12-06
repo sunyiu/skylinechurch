@@ -18,7 +18,7 @@ function createEvent(event){
     var eventTemplate = '<div class="event">' + 
             '<div class="calendarContainer"></div>' + 
             '<div class="detailContainer">' + 
-                '<div class="name"></div><div class="description"></div><div class="time"></div><div class="location"></div>' + 
+                '<div class="name"></div><div class="description"><i class="material-icons">description</i></div><div class="time"><i class="material-icons">access_time</i></div><div class="location"><i class="material-icons">location_on</i></div>' + 
             '</div>' + 
         '</div>',
         startDateM = moment(event.startDate),
@@ -37,7 +37,7 @@ function createEvent(event){
         event$.find('.time').hide();
     }else{
         let timeHtml = startDateM.format('kk:mma') + ' - ' + endDateM.format('kk:mma');
-        event$.find('.time').html(timeHtml);
+        event$.find('.time').append('<span>' + timeHtml + '</span>');
     }
 
     if (isBlank(event.description)){
@@ -49,7 +49,7 @@ function createEvent(event){
     if (isBlank(event.location)){
         event$.find('.location').hide();        
     }else{
-        event$.find('.location').html(event.location);
+        event$.find('.location').append('<span>' + event.location + '</spn>');
     }
 
     return event$;
