@@ -22,9 +22,10 @@ $color5: rgba(7, 143, 255, 1);
 
 
 body
-  padding: 50px
   font: 12px 'Roboto Condensed', Helvetica, Arial, sans-serif
-  background-color: $color1
+  background-color: black
+  padding: 0
+  margin: 0
 
 a
   color: #00B7FF
@@ -32,8 +33,26 @@ a
 pre
   margin: 0
 
+
+#home
+  background-color: #9AC2CC
+  background-image: url("/images/bg.png")
+  background-position: center bottom
+  background-size: 100% auto
+  background-repeat: no-repeat
+  padding: 50px
+  padding-bottom: 150px
+  @media screen and (max-width: 900px) 
+    background-size: 150% auto    
+  @media screen and (max-width: 450px) 
+    background-size: 200% auto
+    
+  
+
+
+
 #loaderContainer
-  text-align: center
+  text-align: left
 
 
 .calendar

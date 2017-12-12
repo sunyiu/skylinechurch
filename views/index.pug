@@ -9,17 +9,16 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')    
     
   body
-      h1 Welcome to #{title}
+      div#home
+        h1 Welcome to #{title}
+        div#loaderContainer
+          div.label Getting events for this week....
+          div.loader 
 
-      div#loaderContainer
-        div.label Getting events for this week....
-        div.loader 
-
-
-      div(id='eventContainer' style='display: none')
-        h2#header
-        div#events
-        div#findOutMore Find out more
+        div(id='eventContainer' style='display: none')
+          h2#header
+          div#events
+          div#findOutMore Find out more
 
 
       //- vendor
