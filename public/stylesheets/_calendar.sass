@@ -1,0 +1,51 @@
+.calendar
+  $detailBg: white
+  $head: $color5
+  font-family: 'Inconsolata', monospace
+  display: inline-block
+  background-color: inherit
+  text-align: center
+
+  .day
+    font-size: 1.5em
+    padding: 2px 10px 2px 10px
+    background-color: $head
+    color: white
+    text-transform: uppercase
+    border-radius: 5px 5px 0 0
+    border: 1px solid black
+    font-weight: bold
+
+  .month
+    border-left: 1px solid black
+    border-right: 1px solid black
+    text-transform: uppercase
+    padding-top: 5px
+    background-color: $detailBg
+
+  .date
+    background-color: $detailBg
+    padding: 0px 10px 2px 10px
+    margin-top: -5px
+    font-size: 2.5em
+    border-radius: 0 0 5px 5px
+    border: 1px solid black
+    border-top: none
+
+.calendar.sunday
+  .day
+    background-color: $color2
+
+.calendar.mute
+    .day
+      color: #333
+      background-color: #aaa
+      .holiday
+        background-color: #aaa
+    .date, .month
+      background-color: #ccc
+      color: #555
+
+.rangeCalendar
+  display: flex
+  align-items: center

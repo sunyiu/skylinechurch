@@ -2,6 +2,7 @@ doctype html
 html
   head
     title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="icon" href="/images/favicon.ico")
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Condensed')
@@ -20,6 +21,10 @@ html
           div#events
           div#findOutMore Find out more
 
+      div#mapContainer
+        div#cover
+        div#gMap
+
 
       //- vendor
       script(src='/vendors/jquery/jquery-3.2.1.min.js')
@@ -28,6 +33,7 @@ html
       
       
       script(src='/javascripts/skyline_client.js')
+      script(src='/javascripts/gMap.js')
       script(src='/javascripts/index.js')          
 
-      //- script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")
+      script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")
