@@ -6,8 +6,20 @@
 /* pastel green */
 /* orange */
 /* blue */
+html {
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  font-size: 16px; }
+  @media (max-width: 1024px) {
+    html {
+      font-size: 15px; } }
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px; } }
+  @media (max-width: 480px) {
+    html {
+      font-size: 13px; } }
+
 body {
-  font: 12px 'Roboto Condensed', Helvetica, Arial, sans-serif;
   background-color: black;
   padding: 0;
   margin: 0; }
@@ -27,10 +39,10 @@ pre {
   padding: 50px;
   padding-bottom: 200px;
   margin-bottom: 10px; }
-  @media screen and (max-width: 900px) {
+  @media (max-width: 900px) {
     #home {
       background-size: 150% auto; } }
-  @media screen and (max-width: 450px) {
+  @media (max-width: 450px) {
     #home {
       background-size: 200% auto; } }
 
