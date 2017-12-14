@@ -27,6 +27,10 @@ $html-font-size-md: 15px;
 $html-font-size-sm: 14px;
 $html-font-size-xs: 13px;
 
+html, body
+    width: 100%
+    height: 100%
+
 html
     font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif        
     font-size: $html-font-size-lg
@@ -40,7 +44,6 @@ html
     @media (max-width: 480px)
         font-size: $html-font-size-xs
     
-
 body
     background-color: black
     padding: 0
@@ -50,21 +53,50 @@ a
     color: #00B7FF
 
 pre
-  margin: 0  
+    margin: 0  
 
-#home
-  background-color: #9AC2CC
-  background-image: url("/images/bg.png")
-  background-position: center bottom
-  background-size: 100% auto
-  background-repeat: no-repeat
-  padding: 50px
-  padding-bottom: 200px
-  margin-bottom: 10px
-  @media (max-width: 900px)
-    background-size: 150% auto    
-  @media (max-width: 450px)
-    background-size: 200% auto
+
+
+header .container
+    padding-top: 150px
+    padding-bottom: 100px
+    padding-left: 200px
+    padding-right: 200px
+    @media (max-width: 1024px)
+        padding-left: 150px
+        padding-right: 150px
+    @media (max-width: 640px)
+        padding-left: 60px
+        padding-right: 60px
+    @media (max-width: 480px)
+        padding-top: 100px
+        padding-left: 25px
+        padding-right: 25px  
+
+section .container
+    padding-left: 200px
+    padding-right: 200px
+    @media (max-width: 1024px)
+        padding-left: 150px
+        padding-right: 150px
+    @media (max-width: 640px)
+        padding-left: 60px
+        padding-right: 60px
+    @media (max-width: 480px)
+        padding-left: 25px
+        padding-right: 25px  
+
+.sectionsCover
+    z-index: 9
+    background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0,linear-gradient(225deg, black 25%, transparent 25%) -50px 0,linear-gradient(315deg, black 25%, transparent 25%),linear-gradient(45deg, black 25%, transparent 25%)
+    background-size: 2em 2em
+    height: 1em
+
+    &.color2            
+        background: linear-gradient(135deg, $color2 25%, transparent 25%) -50px 0,linear-gradient(225deg, $color2 25%, transparent 25%) -50px 0,linear-gradient(315deg, $color2 25%, transparent 25%),linear-gradient(45deg, $color2 25%, transparent 25%)
+        background-size: 2em 2em
+
+
       
 #loaderContainer
   text-align: left
@@ -82,17 +114,14 @@ pre
     width: 100%
     height: 500px
     position: relative
-    #cover, #gMap
+
+    .sectionsCover, #gMap
         position: absolute
         top: 0
         bottom: 0
         left: 0
         right: 0
-    #cover
-        z-index: 9
-        background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0,linear-gradient(225deg, black 25%, transparent 25%) -50px 0,linear-gradient(315deg, black 25%, transparent 25%),linear-gradient(45deg, black 25%, transparent 25%)
-        background-size: 2em 2em
-        height: 1em        
+    
 
 
     

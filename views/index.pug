@@ -5,35 +5,88 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="icon" href="/images/favicon.ico")
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Condensed')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Condensed|Holtwood+One+SC')
     link(rel='stylesheet', href='/stylesheets/loader.css')    
     link(rel='stylesheet', href='/stylesheets/style.css')    
     
-  body
-      div#home
-        h1 Welcome to #{title}
+  body#page-top
+
+    nav#mainNav
+      div.container
+        a(class='navbar-brand js-scroll-trigger' href='#page-top') #{title}
+        div#navbarResponsive
+          ul.navbar-nav
+            li.nav-item
+              a(class='nav-link' href='#about') about
+            li.nav-item
+              a(class='nav-link' href='#services') services
+            li.nav-item
+              a(class='nav-link' href='#contact') contact
+    
+    header
+      div.container
+        div#crossContainer
+          div#cross
+        h2#description We are a Christian community reaching the people of Greater Vancouver and beyond with the life-changing message of Jesus Christ
+
         div#loaderContainer
           div.label Getting events for this week....
           div.loader 
 
         div(id='eventContainer' style='display: none')
-          h2#header
+          h4#header
           div#events
           div#findOutMore Find out more
 
-      div#mapContainer
-        div#cover
-        div#gMap
+    section#about
+      div.sectionsCover
+      div.container  
+        div.content
+          div 
+            span 信於踐行
+            span <strong>S</strong>
+            span erve in action
+          div 
+            span 國度視野
+            span <strong>K</strong>
+            span ingdom perspective
+          div 
+            span 以神為先
+            span <strong>Y</strong>
+            span es to God in advance
+          div
+            span 世上的光
+            span <strong>L</strong>
+            span ight of the world
+          div 
+            span 進入人群
+            span <strong>I</strong>
+            span ncarnational living
+          div 
+            span 網絡建立
+            span <strong>N</strong>
+            span eighbors and networks
+          div 
+            span 歷煉成長
+            span <strong>E</strong>
+            span xperience to grow
 
 
-      //- vendor
-      script(src='/vendors/jquery/jquery-3.2.1.min.js')
-      script(src='/vendors/moment/moment.min.js')
-      script(src='/vendors/lodash/lodash.core.min.js')
-      
-      
-      script(src='/javascripts/skyline_client.js')
-      script(src='/javascripts/gMap.js')
-      script(src='/javascripts/index.js')          
+    section#services
 
-      script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")
+    div#mapContainer
+      div.sectionsCover.color2
+      div#gMap
+
+
+    //- vendor
+    script(src='/vendors/jquery/jquery-3.2.1.min.js')
+    script(src='/vendors/moment/moment.min.js')
+    script(src='/vendors/lodash/lodash.core.min.js')
+    
+    
+    script(src='/javascripts/skyline_client.js')
+    script(src='/javascripts/gMap.js')
+    script(src='/javascripts/index.js')          
+
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIH0Tuuc_II5MtKryUl3s5cYAdCrrwuk&callback=initMap")

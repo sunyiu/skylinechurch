@@ -1,0 +1,27 @@
+//usage
+//  div#crossContainer(style='width: 50px, height:50px')
+//           div#cross
+
+#cross
+    width: 100%
+    height: 100%
+    position: relative
+
+    &:before, &:after
+        content: ""
+        position: absolute
+        z-index: 1
+        background: black
+
+    &:before
+        left: 55%
+        width: 20%
+        margin-left: -15%
+        height: 100%
+
+    &:after
+        top: 40%
+        height: 20%
+        left: 10%
+        margin-top: -15%
+        width: 80%

@@ -1,3 +1,24 @@
+#cross {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  #cross:before, #cross:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    background: black; }
+  #cross:before {
+    left: 55%;
+    width: 20%;
+    margin-left: -15%;
+    height: 100%; }
+  #cross:after {
+    top: 40%;
+    height: 20%;
+    left: 10%;
+    margin-top: -15%;
+    width: 80%; }
+
 /* Coolors Exported Palette - coolors.co/ffffe8-e56554-a8fff3-ffa654-078fff */
 /* HSL */
 /* RGB */
@@ -6,6 +27,10 @@
 /* pastel green */
 /* orange */
 /* blue */
+html, body {
+  width: 100%;
+  height: 100%; }
+
 html {
   font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
   font-size: 16px; }
@@ -30,21 +55,49 @@ a {
 pre {
   margin: 0; }
 
-#home {
-  background-color: #9AC2CC;
-  background-image: url("/images/bg.png");
-  background-position: center bottom;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  padding: 50px;
-  padding-bottom: 200px;
-  margin-bottom: 10px; }
-  @media (max-width: 900px) {
-    #home {
-      background-size: 150% auto; } }
-  @media (max-width: 450px) {
-    #home {
-      background-size: 200% auto; } }
+header .container {
+  padding-top: 150px;
+  padding-bottom: 100px;
+  padding-left: 200px;
+  padding-right: 200px; }
+  @media (max-width: 1024px) {
+    header .container {
+      padding-left: 150px;
+      padding-right: 150px; } }
+  @media (max-width: 640px) {
+    header .container {
+      padding-left: 60px;
+      padding-right: 60px; } }
+  @media (max-width: 480px) {
+    header .container {
+      padding-top: 100px;
+      padding-left: 25px;
+      padding-right: 25px; } }
+
+section .container {
+  padding-left: 200px;
+  padding-right: 200px; }
+  @media (max-width: 1024px) {
+    section .container {
+      padding-left: 150px;
+      padding-right: 150px; } }
+  @media (max-width: 640px) {
+    section .container {
+      padding-left: 60px;
+      padding-right: 60px; } }
+  @media (max-width: 480px) {
+    section .container {
+      padding-left: 25px;
+      padding-right: 25px; } }
+
+.sectionsCover {
+  z-index: 9;
+  background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0, linear-gradient(225deg, black 25%, transparent 25%) -50px 0, linear-gradient(315deg, black 25%, transparent 25%), linear-gradient(45deg, black 25%, transparent 25%);
+  background-size: 2em 2em;
+  height: 1em; }
+  .sectionsCover.color2 {
+    background: linear-gradient(135deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(225deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(315deg, #e56554 25%, transparent 25%), linear-gradient(45deg, #e56554 25%, transparent 25%);
+    background-size: 2em 2em; }
 
 #loaderContainer {
   text-align: left; }
@@ -62,17 +115,12 @@ pre {
   width: 100%;
   height: 500px;
   position: relative; }
-  #mapContainer #cover, #mapContainer #gMap {
+  #mapContainer .sectionsCover, #mapContainer #gMap {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0; }
-  #mapContainer #cover {
-    z-index: 9;
-    background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0, linear-gradient(225deg, black 25%, transparent 25%) -50px 0, linear-gradient(315deg, black 25%, transparent 25%), linear-gradient(45deg, black 25%, transparent 25%);
-    background-size: 2em 2em;
-    height: 1em; }
 
 .calendar {
   font-family: 'Inconsolata', monospace;
@@ -127,7 +175,8 @@ pre {
   -webkit-transition: opacity 600ms, visibility 600ms;
   transition: opacity 600ms, visibility 600ms; }
   .event .detailContainer {
-    padding-left: 25px; }
+    padding-left: 25px;
+    text-align: left; }
     .event .detailContainer .name {
       font-size: 1.25em; }
     .event .detailContainer > div {
@@ -148,5 +197,97 @@ pre {
   font-weight: bold;
   padding-bottom: 15px;
   text-decoration: underline; }
+
+nav#mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030; }
+  nav#mainNav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #555;
+    padding: 15px; }
+    @media (max-width: 640px) {
+      nav#mainNav .container {
+        padding: 10px;
+        font-weight: 200; } }
+    @media (max-width: 480px) {
+      nav#mainNav .container {
+        padding: 5px;
+        font-weight: 100; } }
+    nav#mainNav .container a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      padding: .5rem 1rem; }
+      nav#mainNav .container a.navbar-brand {
+        font-size: 1.5em; }
+    nav#mainNav .container .navbar-brand {
+      font-weight: 700;
+      text-transform: uppercase; }
+    nav#mainNav .container #navbarResponsive {
+      flex-grow: 1;
+      display: flex;
+      align-items: center; }
+      nav#mainNav .container #navbarResponsive .navbar-nav {
+        flex-direction: row;
+        display: flex;
+        margin-left: auto;
+        list-style: none; }
+
+header {
+  min-height: 100%;
+  background-color: #9AC2CC;
+  background-image: url("/images/bg.png");
+  background-position: center bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  text-align: center; }
+  @media (max-width: 1024px) {
+    header {
+      background-size: 150% auto; } }
+  @media (max-width: 640px) {
+    header {
+      background-size: 180% auto; } }
+  @media (max-width: 480px) {
+    header {
+      background-size: 200% auto; } }
+  header #crossContainer {
+    width: 50px;
+    height: 50px;
+    margin: auto; }
+  header h2#description {
+    margin-top: 10px;
+    padding-top: 0;
+    padding-bottom: 1em;
+    margin-bottom: 1.5em;
+    border-bottom: 2px solid #e56554; }
+
+section#about {
+  background-color: #e56554; }
+  section#about .container {
+    padding: 50px 0; }
+    section#about .container .content {
+      display: flex;
+      color: white;
+      font-size: 1em;
+      margin: auto;
+      flex-direction: column;
+      justify-content: center; }
+      section#about .container .content div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 150; }
+        section#about .container .content div strong {
+          font-family: 'Holtwood One SC';
+          font-size: 2em;
+          padding: 15px;
+          padding-right: 5px;
+          color: #ffa654; }
 
 /*# sourceMappingURL=style.css.map */
