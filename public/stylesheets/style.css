@@ -261,7 +261,7 @@ section#about {
     section#about .container .content {
       display: flex;
       color: white;
-      font-size: 1em;
+      font-size: 1.75em;
       margin: auto;
       flex-direction: column;
       justify-content: center; }
