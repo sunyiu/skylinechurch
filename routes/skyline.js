@@ -7,7 +7,7 @@ var skyline = require('../skyline/google');
 
 router.get('/events', function (req, res, next) {
     let from = req.query.from
-        ? moment(req.query.from, 'YYYY MM DD Z').startOf('day').format()
+        ? moment(req.query.from, 'YYYY MM DD Z').format()
         : null,
         to = req.query.to
             ? moment(req.query.to, 'YYYY MM DD Z').endOf('day').format()
