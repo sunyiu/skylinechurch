@@ -232,6 +232,7 @@ header {
   background-position: center bottom;
   background-size: 100% auto;
   background-repeat: no-repeat;
+  margin-bottom: 10px;
   text-align: center; }
   @media (max-width: 1024px) {
     header {
