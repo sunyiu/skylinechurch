@@ -7,10 +7,10 @@ var skyline = require('../skyline/google');
 
 router.get('/events', function (req, res, next) {
     let from = req.query.from
-        ? moment(req.query.from, 'YYYY MM DD Z').format()
+        ? moment(req.query.from, 'YYYY MM DD HH:mm Z').format()
         : null,
         to = req.query.to
-            ? moment(req.query.to, 'YYYY MM DD Z').endOf('day').format()
+            ? moment(req.query.to, 'YYYY MM DD HH:mm Z').format()
             : null;
 
     skyline.getCalendarEvents(from, to).then((result) => {
