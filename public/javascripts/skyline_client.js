@@ -18,8 +18,8 @@ var Skyline = (function(moment){
 
         var deferred = new $.Deferred(),
             params = {
-                from: from.format('YYYY MM DD'),
-                to: to.format('YYYY MM DD')
+                from: from.format('YYYY MM DD Z'),
+                to: to.format('YYYY MM DD Z')
             },
             url = './skyline/events?' + $.param(params);
 
