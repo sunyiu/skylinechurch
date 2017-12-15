@@ -187,62 +187,10 @@ $(function () {
                     eventsForTheWeek$.append(eventForTheWeek);
                 }                
 
-            });
-                
+            });                
                         
             $('section#services #eventContainer, header #eventContainer').show(150);
-            $('header #loaderContainer').hide();
-
-
-
-            
-
-        //event for the week
-        // let eventsForTheWeek$ = $('header #eventContainer #eventsForTheWeek');        
-        // _.forEach(event$s, function (event$) {
-        //     let eventStartDate = event$.data('mStartDate'),
-        //         eventEndDate = event$.data('mEndDate');
-
-        //     if (eventStartDate.isBetween(weekStart, weekEnd) || eventEndDate.isBetween(weekStart, weekEnd)) {                
-        //         let eventForTheWeek = event$.clone();
-        //         eventForTheWeek.show();
-        //         eventsForTheWeek$.append(eventForTheWeek);
-        //     }
-        // });
-
-
-        // $('header #eventContainer').show(150);
-        // $('#loaderContainer').hide();
-
-
-
-
-
-
-        // _.forEach(result.events, function (event$) {
-        //     let eventStartDate = event$.data('mStartDate'),
-        //         eventEndDate = event$.data('mEndDate');
-
-        //     if (eventStartDate.isBetween(weekStart, weekEnd) || eventEndDate.isBetween(weekStart, weekEnd)) {
-        //         let eventForTheWeek = event$.clone();
-        //         eventForTheWeek.show();
-        //     }
-        // });
-
-        // _.forEach(result.monthDividers, function(monthDivider$){
-        //     if (monthDivider$.data('date').isBetween(weekStart, weekEnd)){
-        //         monthDivider$.show();
-        //     }
-        // });
-        
-        // let events$ = $('#mainNav #eventContainer #eventsForTheWeek');
-
-
-        // events$.data('from', weekStart);
-        // events$.data('to', to);
-                
-        // $('#eventContainer').show(150);
-        // $('#loaderContainer').hide();
+            $('section#services #loaderContainer, header #loaderContainer').hide();
     });
 
     var findOutMore$ = $('#findOutEvenMore')
