@@ -160,7 +160,7 @@ $(function () {
     var today = moment(),
         weekStart = moment(today).startOf('isoweek'),
         weekEnd = moment(today).endOf('isoweek'),
-        to = moment(weekEnd).add(8, 'w');   //4 more week for find out more and additional 4 weeks for clicking 'Find out even more'
+        to = moment(weekEnd).add(8, 'w').endOf('d');   //4 more week for find out more and additional 4 weeks for clicking 'Find out even more'
 
         var headerEventContainerHeader$ = $('header #eventContainer #header')
             .html('Events for this week (' + weekStart.format('DD MMM') + '-' + weekEnd.format('DD MMM') + ')');
@@ -215,7 +215,7 @@ $(function () {
             lastEvent = events$.find('.event:last-child'),
             previousEventStartDate = lastEvent.data('mStartDate');
 
-            let to = moment(previousEventStartDate).add(4, 'w'),
+            let to = moment(previousEventStartDate).add(4, 'w').endOf('date'),
                 from = moment(previousEventStartDate).add(1, 'd').startOf('date');
 
             //console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
