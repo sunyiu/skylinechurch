@@ -56,40 +56,32 @@ pre {
   margin: 0;
   white-space: pre-wrap; }
 
-header .container {
-  padding-top: 150px;
-  padding-bottom: 100px;
-  padding-left: 200px;
-  padding-right: 200px; }
+.container {
+  padding-left: 25%;
+  padding-right: 25%; }
   @media (max-width: 1024px) {
-    header .container {
+    .container {
+      padding-left: 200px;
+      padding-right: 200px; } }
+  @media (max-width: 800px) {
+    .container {
       padding-left: 150px;
       padding-right: 150px; } }
   @media (max-width: 640px) {
-    header .container {
+    .container {
       padding-left: 60px;
       padding-right: 60px; } }
   @media (max-width: 480px) {
-    header .container {
-      padding-top: 100px;
+    .container {
       padding-left: 25px;
       padding-right: 25px; } }
 
-section .container {
-  padding-left: 200px;
-  padding-right: 200px; }
-  @media (max-width: 1024px) {
-    section .container {
-      padding-left: 150px;
-      padding-right: 150px; } }
-  @media (max-width: 640px) {
-    section .container {
-      padding-left: 60px;
-      padding-right: 60px; } }
+header .container {
+  padding-top: 150px;
+  padding-bottom: 100px; }
   @media (max-width: 480px) {
-    section .container {
-      padding-left: 25px;
-      padding-right: 25px; } }
+    header .container {
+      padding-top: 100px; } }
 
 .sectionsCover {
   z-index: 9;
@@ -115,23 +107,6 @@ section .container {
   color: white;
   font-size: 1.25em;
   text-decoration: none; }
-
-section#contact {
-  width: 100%;
-  height: 500px;
-  position: relative; }
-  section#contact .sectionsCover, section#contact #gMap {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; }
-
-section#services {
-  background-color: #a8fff3; }
-  section#services .container {
-    padding-top: 50px;
-    padding-bottom: 50px; }
 
 .calendar {
   font-family: 'Inconsolata', monospace;
@@ -301,5 +276,22 @@ section#about {
           padding: 15px;
           padding-right: 5px;
           color: #ffa654; }
+
+section#services {
+  background-color: #a8fff3; }
+  section#services .container {
+    padding-top: 50px;
+    padding-bottom: 50px; }
+
+section#contact {
+  width: 100%;
+  height: 500px;
+  position: relative; }
+  section#contact .sectionsCover, section#contact #gMap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
 
 /*# sourceMappingURL=style.css.map */
