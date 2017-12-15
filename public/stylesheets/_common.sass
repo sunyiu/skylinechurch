@@ -54,6 +54,7 @@ a
 
 pre
     margin: 0  
+    white-space: pre-wrap
 
 
 
@@ -96,12 +97,15 @@ section .container
         background: linear-gradient(135deg, $color2 25%, transparent 25%) -50px 0,linear-gradient(225deg, $color2 25%, transparent 25%) -50px 0,linear-gradient(315deg, $color2 25%, transparent 25%),linear-gradient(45deg, $color2 25%, transparent 25%)
         background-size: 2em 2em
 
+    &.color3
+        background: linear-gradient(135deg, $color3 25%, transparent 25%) -50px 0,linear-gradient(225deg, $color3 25%, transparent 25%) -50px 0,linear-gradient(315deg, $color3 25%, transparent 25%),linear-gradient(45deg, $color3 25%, transparent 25%)
+        background-size: 2em 2em
 
       
 #loaderContainer
-  text-align: left
+  text-align: center
     
-#findOutMore
+.findOutMore
   display: inline-block
   padding: 15px
   background-color: $color4
@@ -109,6 +113,7 @@ section .container
   text-transform: uppercase
   color: white
   font-size: 1.25em
+  text-decoration: none
 
 section#contact
     width: 100%
@@ -123,5 +128,8 @@ section#contact
         right: 0
     
 
-
-    
+section#services   
+    background-color: $color3
+    .container        
+        padding-top: 50px
+        padding-bottom: 50px

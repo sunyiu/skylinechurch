@@ -112,46 +112,45 @@ function createEvent(event) {
     return event$;
 }
 
-function loadEvents(from, to) {
+function loadEventsToService(from, to) {    
     return skyline.getEvents(from, to).then((events) => {
         // console.log(events);
 
         if (events.length == 0) {
-            findOutMore$.hide();
+            $('#findOutEvenMore').hide();
             return;
         }
         // console.log(events);
 
-        let events$ = $('#eventContainer #events'),
-            result = { events: [], monthDividers: [] },            
+                               
+        let events$ = $('section#services #eventContainer #events'),        
+            //result = { events: [], monthDividers: [] },            
             lastEvent = events$.find('.event:last-child'),
             previousEventStartDate = lastEvent.length > 0 ? lastEvent.data('mStartDate') : null;        
          
-
         _.forEach(events, function (e) {
             let eventStartDate = moment(e.startDate),
                 eventEndDate = moment(e.endDate),
                 event$ = createEvent(e);
-
+            
+            event$.data('type', 'event');
             event$.data('mStartDate', eventStartDate);
             event$.data('mEndDate', eventEndDate);
 
             // if (previousEventStartDate){
             //     console.log(previousEventStartDate.format('MMMM YYYY') + ' ' + eventStartDate.format('MMMM YYYY') );
             // }
+
             if (previousEventStartDate == null || !previousEventStartDate.isSame(eventStartDate, 'month')) {
                 let monthDivider = $('<div class="monthDivider" style="display:none">' + eventStartDate.format('MMMM YYYY') + '</div>');
-                monthDivider.data('date', eventStartDate);                
+                monthDivider.data('type', 'divider');
+                monthDivider.data('mStartDate', eventStartDate);                
                 events$.append(monthDivider);
-                result.monthDividers.push(monthDivider);
             }
             
             events$.append(event$);
-            result.events.push(event$);            
             previousEventStartDate = eventStartDate;
         })
-
-        return result;
     });
 }
 
@@ -161,36 +160,92 @@ $(function () {
     var today = moment(),
         weekStart = moment(today).startOf('isoweek'),
         weekEnd = moment(today).endOf('isoweek'),
-        to = moment(weekEnd).add(4, 'w');   //load additional 4 weeks for 'Find out more'
+        to = moment(weekEnd).add(8, 'w');   //4 more week for find out more and additional 4 weeks for clicking 'Find out even more'
 
-    loadEvents(weekStart, to).then((result) => {
-        _.forEach(result.events, function (event$) {
-            let eventStartDate = event$.data('mStartDate'),
-                eventEndDate = event$.data('mEndDate');
+        var headerEventContainerHeader$ = $('header #eventContainer #header')
+            .html('Events for this week (' + weekStart.format('DD MMM') + '-' + weekEnd.format('DD MMM') + ')');
 
-            if (eventStartDate.isBetween(weekStart, weekEnd) || eventEndDate.isBetween(weekStart, weekEnd)) {
-                event$.show();
-            }
-        });
-
-        _.forEach(result.monthDividers, function(monthDivider$){
-            if (monthDivider$.data('date').isBetween(weekStart, weekEnd)){
-                monthDivider$.show();
-            }
-        });
         
-        let events$ = $('#eventContainer #events');
-        events$.data('from', weekStart);
-        events$.data('to', to);
+        loadEventsToService(weekStart, to).then(() => {            
+            let eventsForTheWeek$ = $('header #eventContainer #eventsForTheWeek');
+
+            let children = $('section#services #eventContainer #events > div').each(function(){
+                let this$ = $(this),
+                    type = this$.data('type'),
+                    startDate = this$.data('mStartDate'),
+                    endDate = type == 'event' ? this$.data('mEndDate') : null;
+
+                //for the month
+                if (startDate.isSame(weekStart, 'month') || startDate.isSame(weekEnd, 'month')) {
+                    this$.show();
+                }
+
+                //for the header, this week events
+                if (type == 'event' && (startDate.isBetween(weekStart, weekEnd) || endDate.isBetween(weekStart, weekEnd))) {
+                    let eventForTheWeek = this$.clone();                        
+                    eventForTheWeek.show();
+                    eventsForTheWeek$.append(eventForTheWeek);
+                }                
+
+            });
                 
-        $('#eventContainer').show(150);
-        $('#loaderContainer').hide();
+                        
+            $('section#services #eventContainer, header #eventContainer').show(150);
+            $('header #loaderContainer').hide();
+
+
+
+            
+
+        //event for the week
+        // let eventsForTheWeek$ = $('header #eventContainer #eventsForTheWeek');        
+        // _.forEach(event$s, function (event$) {
+        //     let eventStartDate = event$.data('mStartDate'),
+        //         eventEndDate = event$.data('mEndDate');
+
+        //     if (eventStartDate.isBetween(weekStart, weekEnd) || eventEndDate.isBetween(weekStart, weekEnd)) {                
+        //         let eventForTheWeek = event$.clone();
+        //         eventForTheWeek.show();
+        //         eventsForTheWeek$.append(eventForTheWeek);
+        //     }
+        // });
+
+
+        // $('header #eventContainer').show(150);
+        // $('#loaderContainer').hide();
+
+
+
+
+
+
+        // _.forEach(result.events, function (event$) {
+        //     let eventStartDate = event$.data('mStartDate'),
+        //         eventEndDate = event$.data('mEndDate');
+
+        //     if (eventStartDate.isBetween(weekStart, weekEnd) || eventEndDate.isBetween(weekStart, weekEnd)) {
+        //         let eventForTheWeek = event$.clone();
+        //         eventForTheWeek.show();
+        //     }
+        // });
+
+        // _.forEach(result.monthDividers, function(monthDivider$){
+        //     if (monthDivider$.data('date').isBetween(weekStart, weekEnd)){
+        //         monthDivider$.show();
+        //     }
+        // });
+        
+        // let events$ = $('#mainNav #eventContainer #eventsForTheWeek');
+
+
+        // events$.data('from', weekStart);
+        // events$.data('to', to);
+                
+        // $('#eventContainer').show(150);
+        // $('#loaderContainer').hide();
     });
 
-    var eventContainerHeader$ = $('#eventContainer #header')
-        .html('Events for this week (' + weekStart.format('DD MMM') + '-' + weekEnd.format('DD MMM') + ')');
-
-    var findOutMore$ = $('#findOutMore')
+    var findOutMore$ = $('#findOutEvenMore')
         .data('level', 0)
         .click(function (e) {
             $('.event:hidden').show(150);
@@ -199,23 +254,27 @@ $(function () {
             // let level = findOutMore$.data('level');                
             // if (level == 0){
 
-            let events$ = $('#eventContainer #events');
 
-            eventContainerHeader$.html('Events between (' + events$.data('from').format('DD MMM YYYY') + ' - ' + events$.data('to').format('DD MMM YYYY') + ')')
+            //eventContainerHeader$.html('Events between (' + events$.data('from').format('DD MMM YYYY') + ' - ' + events$.data('to').format('DD MMM YYYY') + ')')
             //findOutMore$.data('level', 1);
             findOutMore$.html('Find out even more');
             // }
 
 
             //load 4 more weeks....
-            let to = moment(events$.data('to')).add(4, 'w'),
-                from = moment(events$.data('to')).add(1, 'd').startOf('date');
+            let events$ = $('section#services #eventContainer #events'),        
+            //result = { events: [], monthDividers: [] },            
+            lastEvent = events$.find('.event:last-child'),
+            previousEventStartDate = lastEvent.data('mStartDate');
+
+            let to = moment(previousEventStartDate).add(4, 'w'),
+                from = moment(previousEventStartDate).add(1, 'd').startOf('date');
 
             //console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
             //events$.data('from', from);
-            events$.data('to', to);
+            //events$.data('to', to);
 
-            loadEvents(from, to);            
+            loadEventsToService(from, to);            
         });
 
 })

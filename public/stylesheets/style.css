@@ -53,7 +53,8 @@ a {
   color: #00B7FF; }
 
 pre {
-  margin: 0; }
+  margin: 0;
+  white-space: pre-wrap; }
 
 header .container {
   padding-top: 150px;
@@ -98,18 +99,22 @@ section .container {
   .sectionsCover.color2 {
     background: linear-gradient(135deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(225deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(315deg, #e56554 25%, transparent 25%), linear-gradient(45deg, #e56554 25%, transparent 25%);
     background-size: 2em 2em; }
+  .sectionsCover.color3 {
+    background: linear-gradient(135deg, #a8fff3 25%, transparent 25%) -50px 0, linear-gradient(225deg, #a8fff3 25%, transparent 25%) -50px 0, linear-gradient(315deg, #a8fff3 25%, transparent 25%), linear-gradient(45deg, #a8fff3 25%, transparent 25%);
+    background-size: 2em 2em; }
 
 #loaderContainer {
-  text-align: left; }
+  text-align: center; }
 
-#findOutMore {
+.findOutMore {
   display: inline-block;
   padding: 15px;
   background-color: #ffa654;
   border-radius: 5px;
   text-transform: uppercase;
   color: white;
-  font-size: 1.25em; }
+  font-size: 1.25em;
+  text-decoration: none; }
 
 section#contact {
   width: 100%;
@@ -121,6 +126,12 @@ section#contact {
     bottom: 0;
     left: 0;
     right: 0; }
+
+section#services {
+  background-color: #a8fff3; }
+  section#services .container {
+    padding-top: 50px;
+    padding-bottom: 50px; }
 
 .calendar {
   font-family: 'Inconsolata', monospace;
@@ -270,7 +281,8 @@ header {
 section#about {
   background-color: #e56554; }
   section#about .container {
-    padding: 50px 0; }
+    padding-top: 50px;
+    padding-bottom: 50px; }
     section#about .container .content {
       display: flex;
       color: white;
