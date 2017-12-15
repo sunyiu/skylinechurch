@@ -10,10 +10,9 @@ function initMap() {
     var contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
-        '<h2 id="firstHeading" class="firstHeading">Skyline Church</h2>' +
+        '<h3 id="firstHeading" class="firstHeading">Skyline Church</h2>' +
         '<div id="bodyContent">' +
-        '<p></p>' +
-        '<p><h5></h5></p>'
+        '<p>7111 No. 2 Road Richmond, BC V7C 3L7</p>' +        
     '</div></div>';
     var infowindow = new google.maps.InfoWindow({
         content: contentString
