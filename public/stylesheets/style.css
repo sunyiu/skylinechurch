@@ -254,6 +254,13 @@ header {
     margin-bottom: 1.5em;
     border-bottom: 2px solid #e56554; }
 
+footer {
+  color: #aaa;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px; }
+
 section#about {
   background-color: #e56554; }
   section#about .container {
