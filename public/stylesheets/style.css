@@ -65,8 +65,8 @@ pre {
       padding-right: 200px; } }
   @media (max-width: 800px) {
     .container {
-      padding-left: 150px;
-      padding-right: 150px; } }
+      padding-left: 125px;
+      padding-right: 125px; } }
   @media (max-width: 640px) {
     .container {
       padding-left: 60px;
@@ -269,10 +269,19 @@ section#about {
     section#about .container .content {
       display: flex;
       color: white;
-      font-size: 1.75em;
+      font-size: 2em;
       margin: auto;
       flex-direction: column;
       justify-content: center; }
+      @media (max-width: 1024px) {
+        section#about .container .content {
+          font-size: 1.5em; } }
+      @media (max-width: 640px) {
+        section#about .container .content {
+          font-size: 1.3em; } }
+      @media (max-width: 480px) {
+        section#about .container .content {
+          font-size: 1em; } }
       section#about .container .content div {
         display: flex;
         align-items: center;
