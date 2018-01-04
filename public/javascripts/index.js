@@ -175,8 +175,9 @@ $(function () {
                     startDate = this$.data('mStartDate'),
                     endDate = type == 'event' ? this$.data('mEndDate') : null;
 
-                //for the month
-                if (startDate.isSame(weekStart, 'month') || startDate.isSame(weekEnd, 'month')) {
+                //for the next 5 weeks
+                let next5Weeks = moment(weekStart).add(4, 'weeks');
+                if (startDate.isBetween(weekStart, next5Weeks)) {
                     this$.show();
                 }
 
