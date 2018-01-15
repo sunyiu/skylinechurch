@@ -317,19 +317,22 @@ section#sermons {
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover; }
-      section#sermons .container #sermonContainer #sermons a div.content {
+      section#sermons .container #sermonContainer #sermons a ul.content {
         padding: 5px 10px;
         color: white; }
-        section#sermons .container #sermonContainer #sermons a div.content span {
+        section#sermons .container #sermonContainer #sermons a ul.content li {
+          padding-bottom: 5px; }
+        section#sermons .container #sermonContainer #sermons a ul.content span {
+          display: inline-block;
           background-color: rgba(0, 0, 0, 0.4);
           padding: 2px; }
-        section#sermons .container #sermonContainer #sermons a div.content .dateContainer {
+        section#sermons .container #sermonContainer #sermons a ul.content .dateContainer {
           display: flex;
           justify-content: left;
           align-items: center; }
-          section#sermons .container #sermonContainer #sermons a div.content .dateContainer .material-icons {
+          section#sermons .container #sermonContainer #sermons a ul.content .dateContainer .material-icons {
             padding-right: 5px; }
-        section#sermons .container #sermonContainer #sermons a div.content .summary {
+        section#sermons .container #sermonContainer #sermons a ul.content .summary {
           font-size: 1.25em; }
 
 section#contact {

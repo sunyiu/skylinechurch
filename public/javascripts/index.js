@@ -6,6 +6,11 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
 }
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length==11)? match[7] : false;
+}
 
 function createCalendar(mDate) {
     var calendarTemplate = '<div class="calendar"><div class="day"></div><div class="month"></div><div class="date"></div></div>',
@@ -119,20 +124,15 @@ function createEvent(event) {
 function createSermon(sermon) {
     var sermonTemplate = '<a class="sermon" style="display: none" href="" target="_blank">' +
         '<div class="cover"></div>' +
-        '<div class="content">' +
-        '<span class="date"></span>' +
-        '<br/>' +
+        '<ul class="content">' +
+        '<li><span class="date"></span></li>' +
         // '<div class="dateContainer"><div><i class="material-icons">&#xE04A;</i></div><div class="date"></div></div>' +
-        '<span class="summary"></span>' +
-        '</div></a>',
+        '<li><span class="summary"></span></li>' +
+        '</ul></a>',
         date = moment(sermon.date),
         sermon$ = $(sermonTemplate);
 
-    var videoId = sermon.youtubeLink.split('v=')[1];
-    var ampersandPosition = videoId.indexOf('&');
-    if (ampersandPosition != -1) {
-        videoId = videoId.substring(0, ampersandPosition);
-    }
+    var videoId = youtube_parser(sermon.youtubeLink);
 
     var thumbnailUrl = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
 
