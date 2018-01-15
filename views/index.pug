@@ -21,6 +21,8 @@ html
             li.nav-item
               a(class='nav-link' href='#services') services
             li.nav-item
+              a(class='nav-link' href='#sermons') sermons
+            li.nav-item
               a(class='nav-link' href='#contact') contact
     
     header
@@ -75,7 +77,6 @@ html
     section#services
       div.sectionsCover.color2
       div.container
-
         div#loaderContainer
           div.label Getting events, please wait....
           div.loader 
@@ -83,14 +84,42 @@ html
         div(id='eventContainer' style='display: none')
           h3#header Come and join us in any of the events
           div#events
-          div#findOutEvenMore.findOutMore Find out even more
+          div#findOutEvenMore.findOutMore Find out even more      
 
-      
+    section#sermons
+      div.sectionsCover.color3
+      div.container
+        div(id='sermonContainer')
+          h3#header Sermons
+          div#sermons
+        div#loaderContainer
+          div.label retrieving, please wait....
+          div.loader           
 
 
     section#contact
-      div.sectionsCover.color3
+      div.sectionsCover.color1
       div#gMap
+      ul#contactMe
+        li Wanna tell us something
+        li#form          
+          div 
+            span Name
+            input(id='contactName' type='text' placeholder='What is your name?')
+            span(id='contactNameError' class='error')
+          div
+            span Email
+            input(id='contactEmail' type='text' placeholder='Where we can contact you?')
+            span(id='contactEmailError' class='error')
+          div
+            span Message
+            textarea(id='contactMessage' placeholder='What do you want to tell us?')
+            span(id='contactMessageError' class='error')
+          div
+            button(id='feedbackSend') send          
+        li#messageSent
+          div We got it, thx ;>
+
 
     footer
       div Copyright &copy; 2017 SKYLINE CHURCH

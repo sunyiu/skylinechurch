@@ -1,12 +1,17 @@
 var google = require('googleapis'),
     key = require('../keys/google'),
+
     _ = require('lodash'),
     jwtClient = null;
 
 
 var googleCac = {
 
-    authorize: function(){
+    eventCalendarId: key.eventCalendarId,
+
+    sermonCalendarId: key.sermonCalendarId,
+
+    authorize: function () {
         if (jwtClient != null) {
             console.log("Already connected!!!");
             return;
@@ -30,7 +35,7 @@ var googleCac = {
         });
     },
 
-    getCalendarEvents: function (from, to) {
+    getCalendarEvents: function (calendarId, from, to) {
         //Google Calendar API
         //https://developers.google.com/google-apps/calendar/v3/reference/events/list
         //By default 250 events are returned per request - maxResults
@@ -39,7 +44,7 @@ var googleCac = {
         return new Promise((resolve, reject) => {
             let params = {
                 auth: jwtClient,
-                calendarId: key.eventCalendarId,
+                calendarId: calendarId,
                 singleEvents: true,     //flatten the recursive events
                 orderBy: 'startTime'
             };
@@ -67,7 +72,7 @@ var googleCac = {
                 // }
             });
         });
-    }    
+    }
 
 }
 

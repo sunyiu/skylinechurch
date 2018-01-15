@@ -88,6 +88,9 @@ header .container {
   background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0, linear-gradient(225deg, black 25%, transparent 25%) -50px 0, linear-gradient(315deg, black 25%, transparent 25%), linear-gradient(45deg, black 25%, transparent 25%);
   background-size: 2em 2em;
   height: 1em; }
+  .sectionsCover.color1 {
+    background: linear-gradient(135deg, #ffffe8 25%, transparent 25%) -50px 0, linear-gradient(225deg, #ffffe8 25%, transparent 25%) -50px 0, linear-gradient(315deg, #ffffe8 25%, transparent 25%), linear-gradient(45deg, #ffffe8 25%, transparent 25%);
+    background-size: 2em 2em; }
   .sectionsCover.color2 {
     background: linear-gradient(135deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(225deg, #e56554 25%, transparent 25%) -50px 0, linear-gradient(315deg, #e56554 25%, transparent 25%), linear-gradient(45deg, #e56554 25%, transparent 25%);
     background-size: 2em 2em; }
@@ -300,9 +303,38 @@ section#services {
     padding-top: 50px;
     padding-bottom: 50px; }
 
+section#sermons {
+  background-color: #ffffe8; }
+  section#sermons .container {
+    padding-top: 50px;
+    padding-bottom: 50px; }
+    section#sermons .container #sermonContainer #sermons a {
+      display: block;
+      padding: 25px 0;
+      text-decoration: none;
+      background: url(/images/public-speaking.jpg) no-repeat right center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; }
+      section#sermons .container #sermonContainer #sermons a div.content {
+        padding: 5px 10px;
+        color: white; }
+        section#sermons .container #sermonContainer #sermons a div.content span {
+          background-color: rgba(0, 0, 0, 0.4);
+          padding: 2px; }
+        section#sermons .container #sermonContainer #sermons a div.content .dateContainer {
+          display: flex;
+          justify-content: left;
+          align-items: center; }
+          section#sermons .container #sermonContainer #sermons a div.content .dateContainer .material-icons {
+            padding-right: 5px; }
+        section#sermons .container #sermonContainer #sermons a div.content .summary {
+          font-size: 1.25em; }
+
 section#contact {
   width: 100%;
-  height: 500px;
+  height: 650px;
   position: relative; }
   section#contact .sectionsCover, section#contact #gMap {
     position: absolute;
@@ -310,5 +342,54 @@ section#contact {
     bottom: 0;
     left: 0;
     right: 0; }
+  section#contact ul#contactMe {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    margin: 0;
+    list-style-type: none;
+    text-transform: uppercase;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: white; }
+    section#contact ul#contactMe li:first-child {
+      font-size: 1.25em;
+      text-decoration: underline;
+      padding-bottom: 5px; }
+    section#contact ul#contactMe li#form div {
+      padding-bottom: 5px;
+      position: relative; }
+      section#contact ul#contactMe li#form div span {
+        padding-right: 10px;
+        position: absolute;
+        left: 0; }
+      section#contact ul#contactMe li#form div input, section#contact ul#contactMe li#form div textarea {
+        resize: none;
+        border: none;
+        background-color: #ffffe8;
+        padding: 5px;
+        margin-left: 75px;
+        width: 250px; }
+      section#contact ul#contactMe li#form div textarea {
+        height: 50px; }
+      section#contact ul#contactMe li#form div button {
+        text-transform: uppercase;
+        width: 260px;
+        color: white;
+        border: none;
+        background-color: #ffa654;
+        border-radius: 5px;
+        margin-left: 75px;
+        height: 25px; }
+      section#contact ul#contactMe li#form div .error {
+        display: block;
+        position: relative;
+        padding-left: 80px;
+        color: darkred;
+        text-transform: none;
+        font-size: 0.85em; }
+    section#contact ul#contactMe li#messageSent {
+      height: 160px; }
 
 /*# sourceMappingURL=style.css.map */
