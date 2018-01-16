@@ -49,7 +49,7 @@ router.post('/feedback', function (req, res, next) {
     var msg = {
         to: 'contact@skylinechurch.ca',
         from: from,
-        subject: 'Feedback from visitor (' + name + ')',
+        subject: 'Message from web page (' + name + ')',
         text: message,
     };
 
