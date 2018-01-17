@@ -39,6 +39,8 @@ nav#mainNav
             flex-grow: 1
             display: flex
             align-items: center
+            @media (max-width: 480px)
+                    display: block
 
             .navbar-nav
                 flex-direction: row
@@ -46,5 +48,6 @@ nav#mainNav
                 margin-left: auto
                 list-style: none
                 @media (max-width: 480px)
-                    margin-top: 5px
+                    padding: 0
+                    flex-wrap: wrap
      

@@ -208,7 +208,8 @@ nav#mainNav {
     @media (max-width: 480px) {
       nav#mainNav .container {
         padding: 5px;
-        font-weight: 100; } }
+        font-weight: 100;
+        display: block; } }
     nav#mainNav .container a {
       color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
@@ -222,11 +223,18 @@ nav#mainNav {
       flex-grow: 1;
       display: flex;
       align-items: center; }
+      @media (max-width: 480px) {
+        nav#mainNav .container #navbarResponsive {
+          display: block; } }
       nav#mainNav .container #navbarResponsive .navbar-nav {
         flex-direction: row;
         display: flex;
         margin-left: auto;
         list-style: none; }
+        @media (max-width: 480px) {
+          nav#mainNav .container #navbarResponsive .navbar-nav {
+            padding: 0;
+            flex-wrap: wrap; } }
 
 header {
   min-height: 100%;
@@ -316,7 +324,9 @@ section#sermons {
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      background-size: cover; }
+      background-size: cover;
+      margin-bottom: 5px;
+      border-radius: 15px; }
       section#sermons .container #sermonContainer #sermons a ul.content {
         padding: 5px 10px;
         color: white; }
@@ -349,6 +359,8 @@ section#contact {
     position: absolute;
     bottom: 25px;
     left: 25px;
+    right: 25px;
+    max-width: 350px;
     margin: 0;
     list-style-type: none;
     text-transform: uppercase;
@@ -367,24 +379,30 @@ section#contact {
         padding-right: 10px;
         position: absolute;
         left: 0; }
-      section#contact ul#contactMe li#form div input, section#contact ul#contactMe li#form div textarea {
+      section#contact ul#contactMe li#form div input, section#contact ul#contactMe li#form div textarea, section#contact ul#contactMe li#form div button {
         resize: none;
         border: none;
         background-color: #ffffe8;
         padding: 5px;
         margin-left: 75px;
         width: 250px; }
+        @media (max-width: 480px) {
+          section#contact ul#contactMe li#form div input, section#contact ul#contactMe li#form div textarea, section#contact ul#contactMe li#form div button {
+            margin-left: 0;
+            padding: 5px 0;
+            width: 100%; } }
       section#contact ul#contactMe li#form div textarea {
         height: 50px; }
       section#contact ul#contactMe li#form div button {
+        color: white;
         text-transform: uppercase;
         width: 260px;
-        color: white;
-        border: none;
         background-color: #ffa654;
         border-radius: 5px;
-        margin-left: 75px;
         height: 25px; }
+        @media (max-width: 480px) {
+          section#contact ul#contactMe li#form div button {
+            width: 100%; } }
       section#contact ul#contactMe li#form div .error {
         display: block;
         position: relative;
@@ -392,6 +410,9 @@ section#contact {
         color: darkred;
         text-transform: none;
         font-size: 0.85em; }
+      @media (max-width: 480px) {
+        section#contact ul#contactMe li#form div span:first-child {
+          display: none; } }
     section#contact ul#contactMe li#messageSent {
       height: 160px; }
 
