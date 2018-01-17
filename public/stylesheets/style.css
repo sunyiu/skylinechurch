@@ -375,10 +375,13 @@ section#contact {
     section#contact ul#contactMe li#form div {
       padding-bottom: 5px;
       position: relative; }
-      section#contact ul#contactMe li#form div span {
+      section#contact ul#contactMe li#form div span.title {
         padding-right: 10px;
         position: absolute;
         left: 0; }
+        @media (max-width: 480px) {
+          section#contact ul#contactMe li#form div span.title {
+            position: relative; } }
       section#contact ul#contactMe li#form div input, section#contact ul#contactMe li#form div textarea, section#contact ul#contactMe li#form div button {
         resize: none;
         border: none;
@@ -410,9 +413,9 @@ section#contact {
         color: darkred;
         text-transform: none;
         font-size: 0.85em; }
-      @media (max-width: 480px) {
-        section#contact ul#contactMe li#form div span:first-child {
-          display: none; } }
+        @media (max-width: 480px) {
+          section#contact ul#contactMe li#form div .error {
+            padding-left: 0; } }
     section#contact ul#contactMe li#messageSent {
       height: 160px; }
 

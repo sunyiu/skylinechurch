@@ -34,10 +34,14 @@ section#contact
             div
                 padding-bottom: 5px
                 position: relative
-                span
+
+                span.title
                     padding-right: 10px
                     position: absolute
-                    left: 0         
+                    left: 0
+                    @media (max-width: 480px)
+                        position: relative
+         
 
                 input, textarea, button
                     resize: none
@@ -69,13 +73,11 @@ section#contact
                     display: block          
                     position: relative
                     padding-left: 80px
-                    color: darkred
+                    color: lightcoral
                     text-transform: none
                     font-size: 0.85em
-
-                @media (max-width: 480px)
-                    span:first-child
-                        display: none
+                    @media (max-width: 480px)
+                        padding-left: 0
 
         li#messageSent
             height: 160px
