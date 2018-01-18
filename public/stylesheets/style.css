@@ -410,7 +410,7 @@ section#contact {
         display: block;
         position: relative;
         padding-left: 80px;
-        color: darkred;
+        color: lightcoral;
         text-transform: none;
         font-size: 0.85em; }
         @media (max-width: 480px) {

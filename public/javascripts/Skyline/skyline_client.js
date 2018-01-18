@@ -1,6 +1,8 @@
 //momentjs is required
 
-var Skyline = (function (moment) {
+var Skyline = Skyline || {};
+
+Skyline.client = (function (moment) {
 
     init();
 

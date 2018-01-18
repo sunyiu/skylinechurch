@@ -1,7 +1,7 @@
-//initialize Skyline-client
-var skyline = Skyline(moment);
+//initialize Skyline
+var skyline_client = Skyline.client(moment),
+    skyline_ui = Skyline.ui(moment);
 
-function isBlank(str) { return (!str || /^\s*$/.test(str)); }
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
@@ -12,140 +12,8 @@ function youtube_parser(url){
     return (match&&match[7].length==11)? match[7] : false;
 }
 
-function createCalendar(mDate) {
-    var calendarTemplate = '<div class="calendar"><div class="day"></div><div class="month"></div><div class="date"></div></div>',
-        calendar$ = $(calendarTemplate);
-
-    calendar$.find('.date').html(mDate.format('DD'));
-    calendar$.find('.day').html(mDate.format('ddd'));
-    calendar$.find('.month').html(mDate.format('MMM'));
-
-    if (mDate.isBefore(moment(), 'date')) {
-        calendar$.addClass('mute');
-    }
-    if (mDate.day() == 0) {
-        calendar$.addClass('sunday');
-    }
-
-    return calendar$;
-}
-
-function createRangeCalendar(mFrom, mTo) {
-    var calendarTemplate = '<div class="rangeCalendar">' +
-        '<div class="calendar from">' +
-        '<div class="day"></div>' +
-        '<div class="month"></div>' +
-        '<div class="date"></div>' +
-        '</div>' +
-        '<i class="material-icons">keyboard_arrow_right</i>' +
-        '<div class="calendar to">' +
-        '<div class="day"></div>' +
-        '<div class="month"></div>' +
-        '<div class="date"></div>' +
-        '</div>' +
-        '</div>',
-        calendar$ = $(calendarTemplate);
-
-    calendar$.find('.from .date').html(mFrom.format('DD'));
-    calendar$.find('.from .day').html(mFrom.format('ddd'));
-    calendar$.find('.from .month').html(mFrom.format('MMM'));
-    calendar$.find('.to .date').html(mTo.format('DD'));
-    calendar$.find('.to .day').html(mTo.format('ddd'));
-    calendar$.find('.to .month').html(mTo.format('MMM'));
-
-    var from$ = calendar$.find('.from');
-    if (mFrom.isBefore(moment(), 'date')) {
-        from$.addClass('mute');
-    }
-    if (mFrom.day() == 0) {
-        from$.addClass('sunday');
-    }
-
-    var to$ = calendar$.find('.to');
-    if (mTo.isBefore(moment(), 'date')) {
-        to$.addClass('mute');
-    }
-    if (mTo.day() == 0) {
-        to$.addClass('sunday');
-    }
-
-    return calendar$;
-}
-
-function createEvent(event) {
-    //event Template is hidden by default
-    var eventTemplate = '<div class="event" style="display: none">' +
-        '<div class="calendarContainer"></div>' +
-        '<div class="detailContainer">' +
-        '<div class="name"><strong></strong></div>' +
-        '<div class="time"><i class="material-icons">access_time</i></div>' +
-        '<div class="location"><i class="material-icons">location_on</i></div>' +
-        '<div class="description"><i class="material-icons">description</i></div>' +
-        '</div>' +
-        '</div>',
-        startDateM = moment(event.startDate),
-        endDateM = moment(event.endDate),
-        event$ = $(eventTemplate);
-
-    if (startDateM.isBefore(moment(), 'date') && endDateM.isBefore(moment(), 'date')) {
-        event$.addClass('mute');
-    }
-
-    if (startDateM.isSame(endDateM, 'day')) {
-        event$.find('.calendarContainer').append(createCalendar(startDateM));
-    } else {
-        event$.find('.calendarContainer').append(createRangeCalendar(startDateM, endDateM));
-    }
-
-    event$.find('.name strong').html(event.summary);
-
-    if (event.isWholeDay) {
-        event$.find('.time').hide();
-    } else {
-        let timeHtml = startDateM.format('kk:mma') + ' - ' + endDateM.format('kk:mma');
-        event$.find('.time').append('<span>' + timeHtml + '</span>');
-    }
-
-    if (isBlank(event.location)) {
-        event$.find('.location').hide();
-    } else {
-        event$.find('.location').append('<span>' + event.location + '</spn>');
-    }
-
-    if (isBlank(event.description)) {
-        event$.find('.description').hide();
-    } else {
-        event$.find('.description').append('<span><pre>' + event.description + '</pre></span>');
-    }
-
-    return event$;
-}
-
-function createSermon(sermon) {
-    var sermonTemplate = '<a class="sermon" style="display: none" href="" target="_blank">' +
-        '<div class="cover"></div>' +
-        '<ul class="content">' +
-        '<li><span class="date"></span></li>' +
-        // '<div class="dateContainer"><div><i class="material-icons">&#xE04A;</i></div><div class="date"></div></div>' +
-        '<li><span class="summary"></span></li>' +
-        '</ul></a>',
-        date = moment(sermon.date),
-        sermon$ = $(sermonTemplate);
-
-    var videoId = youtube_parser(sermon.youtubeLink);
-
-    var thumbnailUrl = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
-
-    sermon$.find('.date').html(date.format('DD MMM'));
-    sermon$.find('.summary').html(sermon.summary);
-    sermon$.attr('href', sermon.youtubeLink);
-    sermon$.css('background-image', 'url(' + thumbnailUrl + ')');
-
-    return sermon$;
-}
-
 function loadEventsToService(from, to) {
-    return skyline.getEvents(from, to).then((events) => {
+    return skyline_client.getEvents(from, to).then((events) => {
         // console.log(events);
 
         if (events.length == 0) {
@@ -163,7 +31,7 @@ function loadEventsToService(from, to) {
         _.forEach(events, function (e) {
             let eventStartDate = moment(e.startDate),
                 eventEndDate = moment(e.endDate),
-                event$ = createEvent(e);
+                event$ = skyline_ui.createEvent(e);
 
             event$.data('type', 'event');
             event$.data('mStartDate', eventStartDate);
@@ -232,15 +100,7 @@ $(function () {
         $('.event:hidden').show(150);
         $('.monthDivider:hidden').show(150);
 
-        // let level = findOutMore$.data('level');                
-        // if (level == 0){
-
-
-        //eventContainerHeader$.html('Events between (' + events$.data('from').format('DD MMM YYYY') + ' - ' + events$.data('to').format('DD MMM YYYY') + ')')
-        //findOutMore$.data('level', 1);
         findOutMore$.html('Find out even more');
-        // }
-
 
         //load 4 more weeks....
         let events$ = $('section#services #eventContainer #events'),
@@ -260,7 +120,7 @@ $(function () {
 
 
     //load sermons from sermon calendar
-    skyline.getSermons(moment(today).subtract(4, 'weeks'), today).then(function (sermons) {
+    skyline_client.getSermons(moment(today).subtract(4, 'weeks'), today).then(function (sermons) {
 
         if (sermons.length == 0){
             $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');            
@@ -269,7 +129,7 @@ $(function () {
         }
 
         _.forEach(sermons, function (s) {
-            var sermon$ = createSermon(s);
+            var sermon$ = skyline_ui.createSermon(s);
             sermon$.show();
             $('section#sermons #sermonContainer #sermons').append(sermon$);
         })
@@ -305,7 +165,7 @@ $(function () {
             if (!hasError) {
                 $('li#messageSent').html('Sending.....').show();
                 $('li#form').hide();
-                skyline.sendFeedback(from, name, message).then(function (data) {
+                skyline_client.sendFeedback(from, name, message).then(function (data) {
                     $('li#messageSent').html('We have received your message, thx ;>');
                 });
             }
