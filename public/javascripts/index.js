@@ -171,4 +171,16 @@ $(function () {
             }
         });
 
+    //Get We images
+    skyline_client.getWeImages().then(function(images){
+        if (!images || images.length == 0){
+            return;
+        }
+
+        for(var i=0; i<18; i++){
+            let index = _.random(0, images.length - 1),
+                we = skyline_ui.createWeHexa(images[index].url);
+            $('section#we div.grid').append(we);
+        }
+    });
 })

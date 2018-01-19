@@ -30,7 +30,6 @@ Skyline.client = (function (moment) {
         return deferred.promise();
     }
 
-
     function getSermons(from, to) {
         if (!moment.isMoment(from) || !moment.isMoment(to)) {
             console.log('Input is not in MomentJS format');
@@ -44,6 +43,18 @@ Skyline.client = (function (moment) {
         }
         return getCalendarEvents('events', from, to)
     };
+
+    function getWeImages(){
+        var deferred = new $.Deferred(),
+            url = './skyline/we?';
+
+        $.get(url, null, (data) => {
+            deferred.resolve(data.images);
+        }, 'json');
+
+        return deferred.promise();        
+    }
+    
 
     function sendFeedback(from, name, message) {
         var deferred = new $.Deferred(),
@@ -63,8 +74,7 @@ Skyline.client = (function (moment) {
     return {
         getEvents: getEvents,
         getSermons: getSermons,
+        getWeImages: getWeImages,
         sendFeedback: sendFeedback
     }
-
-
 });

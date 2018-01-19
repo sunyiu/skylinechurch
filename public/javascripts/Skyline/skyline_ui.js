@@ -138,9 +138,17 @@ Skyline.ui = (function (moment) {
         return sermon$;
     }
 
+    function createWeHexa(imageUrl){
+        var weTemplate = '<div class="me"><div class="hexagon"></div></div>',
+            weTemplate$ = $(weTemplate);
+        weTemplate$.find('.hexagon').css('background-image', 'url(' + imageUrl + ')');
+        return weTemplate$;        
+    }
+
     return {
         createEvent: createEvent,
-        createSermon: createSermon
+        createSermon: createSermon,
+        createWeHexa: createWeHexa
     }
 
 });

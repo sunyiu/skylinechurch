@@ -8,8 +8,8 @@ var google = require('googleapis'),
 var googleCac = {
 
     eventCalendarId: key.eventCalendarId,
-
     sermonCalendarId: key.sermonCalendarId,
+    weFolderId: key.weFolderId,
 
     authorize: function () {
         if (jwtClient != null) {
@@ -34,6 +34,38 @@ var googleCac = {
             }
         });
     },
+
+    getFilesInDriveFolder: function (folderId) {
+        let drive = google.drive('v3');
+        return new Promise((resolve, reject) => {
+            drive.files.list({
+                auth: jwtClient,
+                q: "'" + folderId + "' in parents",
+                maxResults: 100,
+                fields: "nextPageToken, files(id, name, description)"
+            }, function (err, response) {
+                if (err) {
+                    console.log('The API returned an error: ' + err);
+                    reject(err);
+                    return;
+                }
+    
+                var files = response.files;
+                if (files.length == 0) {
+                    console.log('No files found.');
+                } else {
+                    // console.log('Files:');
+                    // for (var i = 0; i < files.length; i++) {
+                    //     var file = files[i];
+                    //     console.log('%s (%s, %s)', file.name, file.id, file.webViewLink, file.description);
+                    // }
+                }    
+                resolve(response);
+                return;
+            });
+        });
+    },
+
 
     getCalendarEvents: function (calendarId, from, to) {
         //Google Calendar API

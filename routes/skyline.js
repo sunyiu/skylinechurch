@@ -40,27 +40,6 @@ router.get('/sermons', function (req, res, next) {
     })
 });
 
-router.post('/feedback', function (req, res, next) {
-    //console.log('post' + req);
-    let from = req.body.from,
-        name = req.body.name,
-        message = req.body.message;
-
-    var msg = {
-        to: 'contact@skylinechurch.ca',
-        from: from,
-        subject: 'Message from web page (' + name + ')',
-        text: message,
-    };
-
-    sgMail.send(msg).then((result) => {
-        res.send('Feedback send');
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send('Error ' + err);
-    });
-});
-
 router.get('/events', function (req, res, next) {
     let from = req.query.from
         ? moment(req.query.from, 'YYYY MM DD HH:mm Z').format()
@@ -96,6 +75,46 @@ router.get('/events', function (req, res, next) {
         console.log(err);
         res.status(500).send('Error ' + err);
     })
+});
+
+router.get('/we', function(req, res, next){
+    skyline.getFilesInDriveFolder(skyline.weFolderId).then((result) =>{
+        let images = [];
+        _.forEach(result.files, (f)=>{
+            images.push({
+                name: f.name,
+                description: f.description,
+                url: 'https://drive.google.com/uc?export=view&id=' + f.id
+            })
+        });
+
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({ images: images }));
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send('Error ' + err);
+    })
+});
+
+router.post('/feedback', function (req, res, next) {
+    //console.log('post' + req);
+    let from = req.body.from,
+        name = req.body.name,
+        message = req.body.message;
+
+    var msg = {
+        to: 'contact@skylinechurch.ca',
+        from: from,
+        subject: 'Message from web page (' + name + ')',
+        text: message,
+    };
+
+    sgMail.send(msg).then((result) => {
+        res.send('Feedback send');
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send('Error ' + err);
+    });
 });
 
 module.exports = router;
