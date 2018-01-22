@@ -451,6 +451,11 @@ section#contact {
     bottom: 0;
     left: 0;
     right: 0; }
+  section#contact #content #bodyContent > div {
+    display: flex;
+    align-items: center; }
+    section#contact #content #bodyContent > div i {
+      padding-right: 5px; }
   section#contact ul#contactMe {
     position: absolute;
     bottom: 25px;
