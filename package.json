@@ -2,6 +2,9 @@
   "name": "skyline",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=6.11.2"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
