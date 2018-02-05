@@ -6,10 +6,10 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
 }
-function youtube_parser(url){
+function youtube_parser(url) {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
-    return (match&&match[7].length==11)? match[7] : false;
+    return (match && match[7].length == 11) ? match[7] : false;
 }
 
 function loadEventsToService(from, to) {
@@ -17,7 +17,7 @@ function loadEventsToService(from, to) {
         // console.log(events);
 
         if (events.length == 0) {
-            $('#findOutEvenMore').hide();                        
+            $('#findOutEvenMore').hide();
             return;
         }
         // console.log(events);
@@ -53,6 +53,61 @@ function loadEventsToService(from, to) {
         })
     });
 }
+
+function loadSermons(from, to) {
+    return skyline_client.getSermons(from, to).then(function (sermons) {
+        let result = [],
+            sorted = sermons.sort(function(a, b){
+                return moment(a.date).isBefore(moment(b.date));
+            });
+
+        _.forEach(sorted, function (s) {
+            var sermon$ = skyline_ui.createSermon(s);
+            sermon$.data('mDate', moment(s.date));
+            $('section#sermons #sermonContainer #sermons').prepend(sermon$);
+            result.push(sermon$);
+        });
+        return result;
+    });
+
+    // return skyline_client.getSermons(from, to).then(function (sermons) {
+    //     _.forEach(sermons, function (s) {
+    //         var sermon$ = skyline_ui.createSermon(s);
+    //         sermon$.show();
+    //         $('section#sermons #sermonContainer #sermons').append(sermon$);
+    //     })
+    //     return sermons;
+    // });
+}
+
+
+// function loadSermons(date) {
+//     //4 weeks to show and 4 weeks to cache
+//     let from = moment(date).subtract(8, 'weeks'),
+//         displayDate = moment(date).subtract(4, 'weeks');
+
+//     return skyline_client.getSermons(from, date).then(function (sermons) {
+//         _.forEach(sermons, function (s) {
+//             var sermon$ = skyline_ui.createSermon(s);
+//             if (moment(s.date).isAfter(displayDate)) {
+//                 sermon$.show();
+//             } else {
+//                 sermon$.hide();
+//             }
+//             $('section#sermons #sermonContainer #sermons').append(sermon$);
+//         });
+//         return sermons;
+//     });
+
+//     // return skyline_client.getSermons(from, to).then(function (sermons) {
+//     //     _.forEach(sermons, function (s) {
+//     //         var sermon$ = skyline_ui.createSermon(s);
+//     //         sermon$.show();
+//     //         $('section#sermons #sermonContainer #sermons').append(sermon$);
+//     //     })
+//     //     return sermons;
+//     // });
+// }
 
 
 $(function () {
@@ -95,51 +150,147 @@ $(function () {
     });
 
     var findOutMore$ = $('#findOutEvenMore')
-    .data('level', 0)
-    .click(function (e) {
-        $('.event:hidden').show(150);
-        $('.monthDivider:hidden').show(150);
+        .data('level', 0)
+        .click(function (e) {
+            $('.event:hidden').show(150);
+            $('.monthDivider:hidden').show(150);
 
-        findOutMore$.html('Find out even more');
+            findOutMore$.html('Find out even more');
 
-        //load 4 more weeks....
-        let events$ = $('section#services #eventContainer #events'),
-            //result = { events: [], monthDividers: [] },            
-            lastEvent = events$.find('.event:last-child'),
-            previousEventStartDate = lastEvent.data('mStartDate');
+            //load 4 more weeks....
+            let events$ = $('section#services #eventContainer #events'),
+                //result = { events: [], monthDividers: [] },            
+                lastEvent = events$.find('.event:last-child'),
+                previousEventStartDate = lastEvent.data('mStartDate');
 
-        let to = moment(previousEventStartDate).add(4, 'w').endOf('date'),
-            from = moment(previousEventStartDate).add(1, 'd').startOf('date');
+            let to = moment(previousEventStartDate).add(4, 'w').endOf('date'),
+                from = moment(previousEventStartDate).add(1, 'd').startOf('date');
 
-        //console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
-        //events$.data('from', from);
-        //events$.data('to', to);
+            //console.log(from.format('YYYY MMM DD') + ' ' + to.format('YYYY MMM DD'));
+            //events$.data('from', from);
+            //events$.data('to', to);
 
-        loadEventsToService(from, to);
-    });    
+            loadEventsToService(from, to);
+        });
 
 
     //load sermons from sermon calendar
-    skyline_client.getSermons(moment(today).subtract(4, 'weeks'), today).then(function (sermons) {
-
-        if (sermons.length == 0){
-            $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');            
+    var sermonFrom = moment(weekEnd).subtract(10, 'w').endOf('d'); //4 more week for find out more and additional 4 weeks for clicking 'Find out even more'
+    var sermonDisplay = moment(weekEnd).subtract(6, 'w').endOf('d');
+    var getMorePastSermons$ = $('section#sermons div#getMorePastSermons button');    
+    loadSermons(sermonFrom, weekEnd).then(function(sermon$s){
+        if (sermon$s.length == 0) {
+            $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');
             $('section#sermons').hide();
             return;
         }
 
-        _.forEach(sermons, function (s) {
-            var sermon$ = skyline_ui.createSermon(s);
-            sermon$.show();
-            $('section#sermons #sermonContainer #sermons').append(sermon$);
+        let hasHiddenSermon = false;
+        _.forEach(sermon$s, function (sermon$){
+            let date = sermon$.data('mDate');
+            if (date.isAfter(sermonDisplay)){
+                sermon$.show();
+            }else{
+                hasHiddenSermon = true;
+                sermon$.hide();
+            }
         })
 
-        $('section#sermons #loaderContainer, header #loaderContainer').hide();
-    });
+        if (hasHiddenSermon){
+            getMorePastSermons$.show();
+            getMorePastSermons$.click(function(e){
+                $('section#sermons #sermonContainer #sermons').children(':hidden').show(150);
 
-   
+                //load 4 more weeks....
+                let sermons$ = $('section#sermons #sermonContainer #sermons'),
+                    //result = { events: [], monthDividers: [] },            
+                    lastSermon = sermons$.children(':first-child'),
+                    to = moment(lastSermon.data('mDate')).subtract(1, 'd').endOf('date')
+                    from = moment(lastSermon.data('mDate')).subtract(4, 'w').endOf('date');
+
+                loadSermons(from, to).then(function (sermon$s){
+                    if (sermon$s.length == 0){
+                        getMorePastSermons$.hide();
+                    }
+                });
+            })
+        }else{
+            getMorePastSermons$.hide();
+        }
+        
+        $('section#sermons #loaderContainer, header #loaderContainer').hide();                            
+    })
+
+    
+
+
+    // function loadSermonsClick(e){
+    //     let to = getMorePastSermons$.data('date'),
+    //         from = moment(from).subtract(8, 'weeks');
+
+    //     return loadSermons(from , to).then(function(sermon$s){
+    //         _.forEach(sermon$s, function(s$){
+    //             let mDate = s$.data('mDate');
+    //             if ()
+    //         })
+
+    //     })
+
+
+    //     return loadSermons(moment(date).add(1, 'days')).then(function (sermons) {
+    //         //hide getMoreBtn if no hidden sermon
+    //         if ($('section#sermons #sermonContainer #sermons').children(':hidden').length == 0) {
+    //             getMorePastSermons$.hide();
+    //         }else{
+    //             getMorePastSermons$.show();
+    //         }
+    //         getMorePastSermons$.data('date', _.last(sermons).date);
+    //     });
+    // }
+
+
+    // var getMorePastSermons$ = $('section#sermons div#getMorePastSermons button');    
+    // getMorePastSermons$.hide();
+    // getMorePastSermons$.data('date', today.format('YYYY-MM-DD'));
+    // getMorePastSermons$.click = loadSermonsClick;
+
+    // loadSermonsClick().then(function(sermons){
+    //     if (sermons.length == 0) {
+    //         $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');
+    //         $('section#sermons').hide();
+    //         return;
+    //     }
+    // })
+
+
+    // skyline_client.getSermons(today).then(function (sermons) {
+    //     if (sermons.length == 0) {
+    //         $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');
+    //         $('section#sermons').hide();
+    //         return;
+    //     }
+
+    //     _.forEach(sermons, function (s) {
+    //         var sermon$ = skyline_ui.createSermon(s);
+    //         sermon$.show();
+    //         $('section#sermons #sermonContainer #sermons').append(sermon$);
+    //     })
+
+    //     $('section#sermons #loaderContainer, header #loaderContainer').hide();
+
+    //     getMorePastSermons$.data('sermonDate', earliestLoadedSermonDate);
+    //     getMorePastSermons$.click(function (e) {
+    //         let date = getMorePastSermons$.data('sermonDate');
+    //         skyline_client.getSermons()
+
+
+    //     });
+
+    // });
+
+
     //contact
-    $('#contactNameError, #contactEmailError, #contactMessageError, li#messageSent').hide();        
+    $('#contactNameError, #contactEmailError, #contactMessageError, li#messageSent').hide();
     var feedbackSend$ = $('#feedbackSend')
         .click(function (e) {
             var from = $('#contactEmail').val(),
@@ -149,7 +300,7 @@ $(function () {
 
             $('#contactNameError, #contactEmailError, #contactMessageError').hide();
 
-            if (isBlank(name)){
+            if (isBlank(name)) {
                 hasError = true;
                 $('#contactNameError').html('Name cannot be empty').show();
             }
@@ -157,9 +308,9 @@ $(function () {
                 hasError = true;
                 $('#contactEmailError').html('Email is not valid').show();
             }
-            if (isBlank(message)){
+            if (isBlank(message)) {
                 hasError = true;
-                $('#contactMessageError').html('Message cannot be empty').show();                
+                $('#contactMessageError').html('Message cannot be empty').show();
             }
 
             if (!hasError) {
@@ -172,12 +323,12 @@ $(function () {
         });
 
     //Get We images
-    skyline_client.getWeImages().then(function(images){
-        if (!images || images.length == 0){
+    skyline_client.getWeImages().then(function (images) {
+        if (!images || images.length == 0) {
             return;
         }
 
-        for(var i=0; i<18; i++){
+        for (var i = 0; i < 18; i++) {
             let index = _.random(0, images.length - 1),
                 we = skyline_ui.createWeHexa(images[index].url);
             $('section#we div.grid').append(we);

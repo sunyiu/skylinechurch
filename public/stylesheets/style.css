@@ -319,6 +319,17 @@ section#sermons {
   section#sermons .container {
     padding-top: 50px;
     padding-bottom: 50px; }
+    section#sermons .container div#getMorePastSermons {
+      padding-bottom: 10px;
+      text-align: right; }
+      section#sermons .container div#getMorePastSermons button {
+        display: none;
+        color: white;
+        text-transform: uppercase;
+        background-color: #ffa654;
+        padding: 15px;
+        border-radius: 5px;
+        border: none; }
     section#sermons .container #sermonContainer #sermons a {
       display: block;
       padding: 25px 0;
