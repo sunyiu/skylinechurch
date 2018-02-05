@@ -69,46 +69,7 @@ function loadSermons(from, to) {
         });
         return result;
     });
-
-    // return skyline_client.getSermons(from, to).then(function (sermons) {
-    //     _.forEach(sermons, function (s) {
-    //         var sermon$ = skyline_ui.createSermon(s);
-    //         sermon$.show();
-    //         $('section#sermons #sermonContainer #sermons').append(sermon$);
-    //     })
-    //     return sermons;
-    // });
 }
-
-
-// function loadSermons(date) {
-//     //4 weeks to show and 4 weeks to cache
-//     let from = moment(date).subtract(8, 'weeks'),
-//         displayDate = moment(date).subtract(4, 'weeks');
-
-//     return skyline_client.getSermons(from, date).then(function (sermons) {
-//         _.forEach(sermons, function (s) {
-//             var sermon$ = skyline_ui.createSermon(s);
-//             if (moment(s.date).isAfter(displayDate)) {
-//                 sermon$.show();
-//             } else {
-//                 sermon$.hide();
-//             }
-//             $('section#sermons #sermonContainer #sermons').append(sermon$);
-//         });
-//         return sermons;
-//     });
-
-//     // return skyline_client.getSermons(from, to).then(function (sermons) {
-//     //     _.forEach(sermons, function (s) {
-//     //         var sermon$ = skyline_ui.createSermon(s);
-//     //         sermon$.show();
-//     //         $('section#sermons #sermonContainer #sermons').append(sermon$);
-//     //     })
-//     //     return sermons;
-//     // });
-// }
-
 
 $(function () {
     //event for the week
@@ -220,74 +181,6 @@ $(function () {
         
         $('section#sermons #loaderContainer, header #loaderContainer').hide();                            
     })
-
-    
-
-
-    // function loadSermonsClick(e){
-    //     let to = getMorePastSermons$.data('date'),
-    //         from = moment(from).subtract(8, 'weeks');
-
-    //     return loadSermons(from , to).then(function(sermon$s){
-    //         _.forEach(sermon$s, function(s$){
-    //             let mDate = s$.data('mDate');
-    //             if ()
-    //         })
-
-    //     })
-
-
-    //     return loadSermons(moment(date).add(1, 'days')).then(function (sermons) {
-    //         //hide getMoreBtn if no hidden sermon
-    //         if ($('section#sermons #sermonContainer #sermons').children(':hidden').length == 0) {
-    //             getMorePastSermons$.hide();
-    //         }else{
-    //             getMorePastSermons$.show();
-    //         }
-    //         getMorePastSermons$.data('date', _.last(sermons).date);
-    //     });
-    // }
-
-
-    // var getMorePastSermons$ = $('section#sermons div#getMorePastSermons button');    
-    // getMorePastSermons$.hide();
-    // getMorePastSermons$.data('date', today.format('YYYY-MM-DD'));
-    // getMorePastSermons$.click = loadSermonsClick;
-
-    // loadSermonsClick().then(function(sermons){
-    //     if (sermons.length == 0) {
-    //         $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');
-    //         $('section#sermons').hide();
-    //         return;
-    //     }
-    // })
-
-
-    // skyline_client.getSermons(today).then(function (sermons) {
-    //     if (sermons.length == 0) {
-    //         $('section#contact div.sectionsCover').removeClass('color1').addClass('color3');
-    //         $('section#sermons').hide();
-    //         return;
-    //     }
-
-    //     _.forEach(sermons, function (s) {
-    //         var sermon$ = skyline_ui.createSermon(s);
-    //         sermon$.show();
-    //         $('section#sermons #sermonContainer #sermons').append(sermon$);
-    //     })
-
-    //     $('section#sermons #loaderContainer, header #loaderContainer').hide();
-
-    //     getMorePastSermons$.data('sermonDate', earliestLoadedSermonDate);
-    //     getMorePastSermons$.click(function (e) {
-    //         let date = getMorePastSermons$.data('sermonDate');
-    //         skyline_client.getSermons()
-
-
-    //     });
-
-    // });
-
 
     //contact
     $('#contactNameError, #contactEmailError, #contactMessageError, li#messageSent').hide();
