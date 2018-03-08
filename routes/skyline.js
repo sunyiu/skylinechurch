@@ -24,16 +24,24 @@ router.get('/sermons', function (req, res, next) {
         }
 
         let events = _.map(result.items, (item) => {
-            let descriptions = item.description.split('\n\n'),
+            
+            let descriptions = _.chain(item.description)
+                .split('\n')
+                .filter((s) =>{
+                    return s;
+                })
+                .value(),
                 backgroundImageId = (item.attachments && item.attachments.length > 0) ? item.attachments[0].fileId : null;
+            
+            // console.log(_.split(item.description, '\n').length);
+            // console.log('test -- ' + item.description + ' ::: ' + descriptions[0] + ' ::: ' + descriptions[1] + ' ::: ' + backgroundImageId);
 
-            //console.log('test ' + descriptions[0] + ' ::: ' + descriptions[1] + ' ::: ' + backgroundImage);
             return {
                 type: 'sermon',
                 date: item.start.date != null ? item.start.date : item.start.dateTime,
                 summary: item.summary,
-                youtubeLink: descriptions[0],
-                scripture: descriptions[1],
+                youtubeLink: (descriptions && descriptions.length >= 0) ? descriptions[0] : item.description,
+                scripture: (descriptions && descriptions.length > 0) ? descriptions[1] : null,
                 backgroundImageId: backgroundImageId
             }
         });
