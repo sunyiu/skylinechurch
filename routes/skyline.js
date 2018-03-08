@@ -24,12 +24,17 @@ router.get('/sermons', function (req, res, next) {
         }
 
         let events = _.map(result.items, (item) => {
+            let descriptions = item.description.split('\n\n'),
+                backgroundImageId = (item.attachments && item.attachments.length > 0) ? item.attachments[0].fileId : null;
+
+            //console.log('test ' + descriptions[0] + ' ::: ' + descriptions[1] + ' ::: ' + backgroundImage);
             return {
                 type: 'sermon',
                 date: item.start.date != null ? item.start.date : item.start.dateTime,
                 summary: item.summary,
-                youtubeLink: item.description,
-                backgroundImage: item.attachments
+                youtubeLink: descriptions[0],
+                scripture: descriptions[1],
+                backgroundImageId: backgroundImageId
             }
         });
         res.setHeader('Content-Type', 'application/json');
@@ -84,7 +89,7 @@ router.get('/we', function(req, res, next){
             images.push({
                 name: f.name,
                 description: f.description,
-                url: 'https://drive.google.com/uc?export=view&id=' + f.id
+                fileId: f.id
             })
         });
 

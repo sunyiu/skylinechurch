@@ -4,26 +4,26 @@ var Skyline = Skyline || {};
 
 Skyline.ui = (function (moment) {
 
-    function isBlank(str) { return (!str || /^\s*$/.test(str)); }    
+    function isBlank(str) { return (!str || /^\s*$/.test(str)); }
 
     function createCalendar(mDate) {
         var calendarTemplate = '<div class="calendar"><div class="day"></div><div class="month"></div><div class="date"></div></div>',
             calendar$ = $(calendarTemplate);
-    
+
         calendar$.find('.date').html(mDate.format('DD'));
         calendar$.find('.day').html(mDate.format('ddd'));
         calendar$.find('.month').html(mDate.format('MMM'));
-    
+
         if (mDate.isBefore(moment(), 'date')) {
             calendar$.addClass('mute');
         }
         if (mDate.day() == 0) {
             calendar$.addClass('sunday');
         }
-    
+
         return calendar$;
     }
-    
+
     function createRangeCalendar(mFrom, mTo) {
         var calendarTemplate = '<div class="rangeCalendar">' +
             '<div class="calendar from">' +
@@ -39,14 +39,14 @@ Skyline.ui = (function (moment) {
             '</div>' +
             '</div>',
             calendar$ = $(calendarTemplate);
-    
+
         calendar$.find('.from .date').html(mFrom.format('DD'));
         calendar$.find('.from .day').html(mFrom.format('ddd'));
         calendar$.find('.from .month').html(mFrom.format('MMM'));
         calendar$.find('.to .date').html(mTo.format('DD'));
         calendar$.find('.to .day').html(mTo.format('ddd'));
         calendar$.find('.to .month').html(mTo.format('MMM'));
-    
+
         var from$ = calendar$.find('.from');
         if (mFrom.isBefore(moment(), 'date')) {
             from$.addClass('mute');
@@ -54,7 +54,7 @@ Skyline.ui = (function (moment) {
         if (mFrom.day() == 0) {
             from$.addClass('sunday');
         }
-    
+
         var to$ = calendar$.find('.to');
         if (mTo.isBefore(moment(), 'date')) {
             to$.addClass('mute');
@@ -62,10 +62,10 @@ Skyline.ui = (function (moment) {
         if (mTo.day() == 0) {
             to$.addClass('sunday');
         }
-    
+
         return calendar$;
     }
-    
+
     function createEvent(event) {
         //event Template is hidden by default
         var eventTemplate = '<div class="event" style="display: none">' +
@@ -80,41 +80,41 @@ Skyline.ui = (function (moment) {
             startDateM = moment(event.startDate),
             endDateM = moment(event.endDate),
             event$ = $(eventTemplate);
-    
+
         if (startDateM.isBefore(moment(), 'date') && endDateM.isBefore(moment(), 'date')) {
             event$.addClass('mute');
         }
-    
+
         if (startDateM.isSame(endDateM, 'day')) {
             event$.find('.calendarContainer').append(createCalendar(startDateM));
         } else {
             event$.find('.calendarContainer').append(createRangeCalendar(startDateM, endDateM));
         }
-    
+
         event$.find('.name strong').html(event.summary);
-    
+
         if (event.isWholeDay) {
             event$.find('.time').hide();
         } else {
             let timeHtml = startDateM.format('kk:mma') + ' - ' + endDateM.format('kk:mma');
             event$.find('.time').append('<span>' + timeHtml + '</span>');
         }
-    
+
         if (isBlank(event.location)) {
             event$.find('.location').hide();
         } else {
             event$.find('.location').append('<span>' + event.location + '</spn>');
         }
-    
+
         if (isBlank(event.description)) {
             event$.find('.description').hide();
         } else {
             event$.find('.description').append('<span><pre>' + event.description + '</pre></span>');
         }
-    
+
         return event$;
     }
-    
+
     function createSermon(sermon) {
         var sermonTemplate = '<a class="sermon" style="display: none" href="" target="_blank">' +
             '<div class="cover"></div>' +
@@ -122,27 +122,35 @@ Skyline.ui = (function (moment) {
             '<li><span class="date"></span></li>' +
             // '<div class="dateContainer"><div><i class="material-icons">&#xE04A;</i></div><div class="date"></div></div>' +
             '<li><span class="summary"></span></li>' +
+            '<li><span class="scripture"></span></li>' +
             '</ul></a>',
             date = moment(sermon.date),
             sermon$ = $(sermonTemplate);
-    
+
         var videoId = youtube_parser(sermon.youtubeLink);
-    
-        var thumbnailUrl = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
-    
+
+        var thumbnailUrl = sermon.backgroundImageId
+            ? 'https://drive.google.com/uc?export=view&id=' + sermon.backgroundImageId
+            : 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
+
         sermon$.find('.date').html(date.format('DD MMM'));
         sermon$.find('.summary').html(sermon.summary);
+        if (sermon.scripture){
+            sermon$.find('.scripture').html(sermon.scripture);
+        }
         sermon$.attr('href', sermon.youtubeLink);
         sermon$.css('background-image', 'url(' + thumbnailUrl + ')');
-    
+
         return sermon$;
     }
 
-    function createWeHexa(imageUrl){
+    function createWeHexa(fileId) {
         var weTemplate = '<div class="me"><div class="hexagon"></div></div>',
-            weTemplate$ = $(weTemplate);
+            weTemplate$ = $(weTemplate),
+            imageUrl = 'https://drive.google.com/uc?export=view&id=' + fileId
+
         weTemplate$.find('.hexagon').css('background-image', 'url(' + imageUrl + ')');
-        return weTemplate$;        
+        return weTemplate$;
     }
 
     return {
