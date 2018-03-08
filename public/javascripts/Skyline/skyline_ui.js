@@ -137,6 +137,8 @@ Skyline.ui = (function (moment) {
         sermon$.find('.summary').html(sermon.summary);
         if (sermon.scripture){
             sermon$.find('.scripture').html(sermon.scripture);
+        }else{
+            sermon$.find('.scripture').hide();
         }
         sermon$.attr('href', sermon.youtubeLink);
         sermon$.css('background-image', 'url(' + thumbnailUrl + ')');
