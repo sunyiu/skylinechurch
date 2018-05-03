@@ -221,10 +221,34 @@ $(function () {
             return;
         }
 
-        for (var i = 0; i < 4; i++) {
-            let index = _.random(0, images.length - 1),
-                we = skyline_ui.createWeHexa(images[index].fileId);
-            $('section#we div.grid').append(we);
+        let totalPicToDisplay = 5,
+            pics = [], 
+            isDone = false,
+            count = 1;
+
+        for (var i=0; i< totalPicToDisplay; i++){
+            pics[i] = {
+                index: i,
+                isSelected: false
+            }
         }
+
+        while(count <= totalPicToDisplay){
+            let index = _.random(0, totalPicToDisplay-1);
+            if (!pics[index].isSelected){
+                pics[index].isSelected = true;
+                let we = skyline_ui.createWeHexa(images[index].fileId);
+                $('section#we div.grid').append(we);
+                count ++;
+            }
+        }
+
+
+        // for (var i = 0; i < 5; i++) {
+        //     //let index = _.random(0, images.length - 1),
+        //     let index = i;
+        //         we = skyline_ui.createWeHexa(images[index].fileId);
+        //     $('section#we div.grid').append(we);
+        // }
     });
 })

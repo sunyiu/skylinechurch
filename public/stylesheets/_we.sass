@@ -1,4 +1,4 @@
-$num: 2
+$num: 3
 $width: 100% / $num
 $margin: 1%
 $ratio: ($width - $margin * 2) / 27.85714285714286
@@ -22,20 +22,22 @@ section#we
             align-items: center            
             
             .title
-                flex-grow: 1        
+                //flex-grow: 1        
+                width: 50%
                 h2, h3, div
                     color: black
                     margin: 0
                 h2
                     font-size: 5em
-                    text-transform: uppercase
+                    text-transform: uppercase                    
                 h3
                     font-size: 2em
+                    margin-bottom: 5px
                 div 
                     font-size: 1em
 
-            .grid
-                flex-grow: 1
+            // .grid
+            //     flex-grow: 1
                 
 
                     
@@ -44,10 +46,10 @@ section#we
                 position: relative
                 overflow: hidden    
                 // width: 100% + $width / 2 -- take whole row...
-                width: 100%
+                width: 50%
                 padding-bottom: $margin * 2
                 float: right
-                padding-right: 45px
+                // padding-right: 45px
                 // width: 100% + $width * 2
                 // margin-left: -$width/2 - 2.5%
                 // padding: 25px 0

@@ -370,7 +370,7 @@ section#we {
       display: flex;
       align-items: center; }
       section#we .container .weContainer .title {
-        flex-grow: 1; }
+        width: 50%; }
         section#we .container .weContainer .title h2, section#we .container .weContainer .title h3, section#we .container .weContainer .title div {
           color: black;
           margin: 0; }
@@ -378,23 +378,21 @@ section#we {
           font-size: 5em;
           text-transform: uppercase; }
         section#we .container .weContainer .title h3 {
-          font-size: 2em; }
+          font-size: 2em;
+          margin-bottom: 5px; }
         section#we .container .weContainer .title div {
           font-size: 1em; }
       section#we .container .weContainer .grid {
-        flex-grow: 1; }
-      section#we .container .weContainer .grid {
         position: relative;
         overflow: hidden;
-        width: 100%;
+        width: 50%;
         padding-bottom: 2%;
-        float: right;
-        padding-right: 45px; }
+        float: right; }
         section#we .container .weContainer .grid div.me {
           position: relative;
           float: left;
-          width: 48%;
-          padding: 0 0 55.42725% 0;
+          width: 31.33333%;
+          padding: 0 0 36.18168% 0;
           -o-transform: translateX(0) rotate(-60deg) skewY(30deg);
           -moz-transform: translateX(0) rotate(-60deg) skewY(30deg);
           -webkit-transform: translateX(0) rotate(-60deg) skewY(30deg);
@@ -421,15 +419,22 @@ section#we {
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat; }
-        section#we .container .weContainer .grid div.me:nth-child(4n+3) {
-          margin-top: -8.49231%;
+        section#we .container .weContainer .grid div.me:nth-child(6n+4) {
+          margin-top: -5.54359%;
           -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           transform: translateX(50%) rotate(-60deg) skewY(30deg); }
-        section#we .container .weContainer .grid div.me:nth-child(4n+4) {
-          margin-top: -8.49231%;
+        section#we .container .weContainer .grid div.me:nth-child(6n+5) {
+          margin-top: -5.54359%;
+          -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+          -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+          -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+          -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+          transform: translateX(50%) rotate(-60deg) skewY(30deg); }
+        section#we .container .weContainer .grid div.me:nth-child(6n+6) {
+          margin-top: -5.54359%;
           -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
           -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
