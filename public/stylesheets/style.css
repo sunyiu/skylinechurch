@@ -362,8 +362,7 @@ section#sermons {
 
 section#we {
   background-color: #ffa654;
-  overflow: auto;
-  display: none; }
+  overflow: auto; }
   section#we .container {
     overflow: hidden;
     padding: 0;
@@ -371,18 +370,18 @@ section#we {
     section#we .container .grid {
       position: relative;
       overflow: hidden;
-      width: 108.33333%;
+      width: 25%;
       padding-bottom: 2%; }
       section#we .container .grid div.me {
         position: relative;
         float: left;
-        width: 14.66667%;
-        padding: 0 0 16.9361% 0;
-        -o-transform: translateX(-58%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(-58%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(-58%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(-58%) rotate(-60deg) skewY(30deg);
-        transform: translateX(-58%) rotate(-60deg) skewY(30deg);
+        width: 48%;
+        padding: 0 0 55.42725% 0;
+        -o-transform: translateX(0) rotate(-60deg) skewY(30deg);
+        -moz-transform: translateX(0) rotate(-60deg) skewY(30deg);
+        -webkit-transform: translateX(0) rotate(-60deg) skewY(30deg);
+        -ms-transform: translateX(0) rotate(-60deg) skewY(30deg);
+        transform: translateX(0) rotate(-60deg) skewY(30deg);
         background: #fd005f;
         overflow: hidden;
         visibility: hidden;
@@ -404,54 +403,22 @@ section#we {
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat; }
-      section#we .container .grid div.me:nth-child(12n+7) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
-      section#we .container .grid div.me:nth-child(12n+8) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
-      section#we .container .grid div.me:nth-child(12n+9) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
-      section#we .container .grid div.me:nth-child(12n+10) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
-      section#we .container .grid div.me:nth-child(12n+11) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
-      section#we .container .grid div.me:nth-child(12n+12) {
-        margin-top: -2.59487%;
-        margin-bottom: -2.59487%;
-        -o-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -moz-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -webkit-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        -ms-transform: translateX(2%) rotate(-60deg) skewY(30deg);
-        transform: translateX(2%) rotate(-60deg) skewY(30deg); }
+      section#we .container .grid div.me:nth-child(4n+3) {
+        margin-top: -8.49231%;
+        margin-bottom: -8.49231%;
+        -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        transform: translateX(50%) rotate(-60deg) skewY(30deg); }
+      section#we .container .grid div.me:nth-child(4n+4) {
+        margin-top: -8.49231%;
+        margin-bottom: -8.49231%;
+        -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+        transform: translateX(50%) rotate(-60deg) skewY(30deg); }
 
 section#contact {
   width: 100%;

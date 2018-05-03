@@ -221,7 +221,7 @@ $(function () {
             return;
         }
 
-        for (var i = 0; i < 18; i++) {
+        for (var i = 0; i < 4; i++) {
             let index = _.random(0, images.length - 1),
                 we = skyline_ui.createWeHexa(images[index].fileId);
             $('section#we div.grid').append(we);

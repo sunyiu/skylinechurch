@@ -1,4 +1,4 @@
-$num: 6
+$num: 2
 $width: 100% / $num
 $margin: 1%
 $ratio: ($width - $margin * 2) / 27.85714285714286
@@ -9,7 +9,7 @@ $margin_tb: -4.9285714285 * $ratio
 section#we
     background-color: $color4
     overflow: auto
-    display: none
+
 
     .container
         overflow: hidden
@@ -21,7 +21,8 @@ section#we
         .grid
             position: relative
             overflow: hidden    
-            width: 100% + $width / 2
+            // width: 100% + $width / 2 -- take whole row...
+            width: 25%
             padding-bottom: $margin * 2
             // width: 100% + $width * 2
             // margin-left: -$width/2 - 2.5%
@@ -32,12 +33,18 @@ section#we
                 position: relative
                 float: left
                 width: $width - $margin * 2
+                // padding: 0 0 $padding 0
                 padding: 0 0 $padding 0
-                -o-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
-                -moz-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
-                -webkit-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
-                -ms-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
-                transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                // -o-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                // -moz-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                // -webkit-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                // -ms-transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                // transform: translateX(-58%) rotate(-60deg) skewY(30deg)
+                -o-transform: translateX(0) rotate(-60deg) skewY(30deg)
+                -moz-transform: translateX(0) rotate(-60deg) skewY(30deg)
+                -webkit-transform: translateX(0) rotate(-60deg) skewY(30deg)
+                -ms-transform: translateX(0) rotate(-60deg) skewY(30deg)
+                transform: translateX(0) rotate(-60deg) skewY(30deg)                
                 background: #fd005f
                 overflow: hidden
                 visibility: hidden
@@ -80,9 +87,9 @@ section#we
                     // -webkit-transform: translateX(50% + $margin) rotate(-60deg) skewY(30deg)
                     // -ms-transform: translateX(50% + $margin) rotate(-60deg) skewY(30deg)
                     // transform: translateX(50% + $margin) rotate(-60deg) skewY(30deg)
-                    -o-transform: translateX(2* $margin) rotate(-60deg) skewY(30deg)
-                    -moz-transform:  translateX(2* $margin) rotate(-60deg) skewY(30deg)
-                    -webkit-transform: translateX(2* $margin) rotate(-60deg) skewY(30deg)
-                    -ms-transform: translateX(2* $margin) rotate(-60deg) skewY(30deg)
-                    transform: translateX(2* $margin) rotate(-60deg) skewY(30deg)
+                    -o-transform: translateX(50%) rotate(-60deg) skewY(30deg)
+                    -moz-transform:  translateX(50%) rotate(-60deg) skewY(30deg)
+                    -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg)
+                    -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg)
+                    transform: translateX(50%) rotate(-60deg) skewY(30deg)
                 
