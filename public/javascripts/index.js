@@ -64,7 +64,7 @@ function loadSermons(from, to) {
         _.forEach(sorted, function (s) {
             var sermon$ = skyline_ui.createSermon(s);
             sermon$.data('mDate', moment(s.date));
-            $('section#sermons #sermonContainer #sermons').prepend(sermon$);
+            $('section#sermons #sermonContainer #sermons').append(sermon$);
             result.push(sermon$);
         });
         return result;
@@ -165,7 +165,7 @@ $(function () {
                 //load 4 more weeks....
                 let sermons$ = $('section#sermons #sermonContainer #sermons'),
                     //result = { events: [], monthDividers: [] },            
-                    lastSermon = sermons$.children(':first-child'),
+                    lastSermon = sermons$.children(':last-child'),
                     to = moment(lastSermon.data('mDate')).subtract(1, 'd').endOf('date')
                     from = moment(lastSermon.data('mDate')).subtract(4, 'w').endOf('date');
 
