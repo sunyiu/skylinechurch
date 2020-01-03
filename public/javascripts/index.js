@@ -58,7 +58,7 @@ function loadSermons(from, to) {
     return skyline_client.getSermons(from, to).then(function (sermons) {
         let result = [],
             sorted = sermons.sort(function(a, b){
-                return moment(a.date).isBefore(moment(b.date));
+                return moment(b.date).isBefore(moment(a.date));
             });
 
         _.forEach(sorted, function (s) {

@@ -12,7 +12,7 @@ function initMap() {
         '</div>' +
         '<h3 id="firstHeading" class="firstHeading">Skyline Church</h2>' +
         '<div id="bodyContent">' +
-        '<div><i class="material-icons">home</i><div>7111 No. 2 Road Richmond, BC V7C 3L7</div></div>' +        
+        '<div><i class="material-icons">home</i><div>#110-12830 Clarke Place, Richmond</div></div>' +        
         '<div><i class="material-icons">email</i><a href="mailto:contact@skylinechurch.ca" target="_top">contact@skylinechurch.ca</a></p>' + 
     '</div></div>';
     var infowindow = new google.maps.InfoWindow({
